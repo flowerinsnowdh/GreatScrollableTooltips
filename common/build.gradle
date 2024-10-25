@@ -3,7 +3,7 @@ plugins() {
     id('maven-publish')
 }
 
-group = 'online.flowerinsnow.greatscrollabletooltips'
+group = 'cn.flowerinsnow.greatscrollabletooltips'
 version = '1.0.1'
 
 repositories() {
@@ -59,7 +59,7 @@ publishing() {
             pom() {
                 name = rootProject.name
                 description = 'Minecraft Mod/Allow scrolling of item tooltips in the inventory.'
-                url = 'https://github.com/flowerinsnow-lights-opensource/GreatScrollableTooltips'
+                url = 'https://github.com/flowerinsnowdh/GreatScrollableTooltips'
 
                 licenses() {
                     license() {
@@ -77,9 +77,9 @@ publishing() {
                 }
 
                 scm() {
-                    connection = 'scm:git:git://github.com/flowerinsnow-lights-opensource/GreatScrollableTooltips.git'
-                    developerConnection = 'scm:git:ssh://github.com:flowerinsnow-lights-opensource/GreatScrollableTooltips.git'
-                    url = 'https://github.com/flowerinsnow-lights-opensource/GreatScrollableTooltips/tree/master'
+                    connection = 'scm:git:git://github.com/flowerinsnowdh/GreatScrollableTooltips.git'
+                    developerConnection = 'scm:git:ssh://github.com:flowerinsnowdh/GreatScrollableTooltips.git'
+                    url = 'https://github.com/flowerinsnowdh/GreatScrollableTooltips/tree/master'
                 }
             }
 

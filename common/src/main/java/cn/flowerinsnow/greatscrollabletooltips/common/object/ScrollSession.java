@@ -1,4 +1,4 @@
-package online.flowerinsnow.greatscrollabletooltips.common.object;
+package cn.flowerinsnow.greatscrollabletooltips.common.object;
 
 import java.util.Objects;
 

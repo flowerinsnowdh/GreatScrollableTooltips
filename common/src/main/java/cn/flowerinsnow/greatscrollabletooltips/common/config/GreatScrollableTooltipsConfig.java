@@ -1,4 +1,4 @@
-package online.flowerinsnow.greatscrollabletooltips.common.config;
+package cn.flowerinsnow.greatscrollabletooltips.common.config;
 
 import com.electronwill.nightconfig.core.CommentedConfig;
 import com.electronwill.nightconfig.core.io.WritingException;
@@ -6,7 +6,7 @@ import com.electronwill.nightconfig.core.io.WritingMode;
 import com.electronwill.nightconfig.toml.TomlFormat;
 import com.electronwill.nightconfig.toml.TomlParser;
 import com.electronwill.nightconfig.toml.TomlWriter;
-import online.flowerinsnow.greatscrollabletooltips.common.provider.ModEnvironmentProvider;
+import cn.flowerinsnow.greatscrollabletooltips.common.provider.ModEnvironmentProvider;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;

@@ -7,7 +7,7 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 
-public interface RenderMouseoverTooltipEvent {
+public interface RenderTooltipEvent {
     interface Post {
         Event<Post> EVENT = EventFactory.createArrayBacked(Post.class, listeners -> (screen, matrices, stack, x, y) -> {
             for (Post listener : listeners) {
