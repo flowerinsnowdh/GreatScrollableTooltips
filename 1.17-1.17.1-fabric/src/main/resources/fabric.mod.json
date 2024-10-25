@@ -9,18 +9,18 @@
 	],
 	"contact": {
 		"homepage": "https://modrinth.com/project/great-scrollable-tooltips",
-		"sources": "https://github.com/flowerinsnow-lights-opensource/GreatScrollableTooltips",
-		"issues": "https://github.com/flowerinsnow-lights-opensource/GreatScrollableTooltips/issues"
+		"sources": "https://github.com/flowerinsnowdh/GreatScrollableTooltips",
+		"issues": "https://github.com/flowerinsnowdh/GreatScrollableTooltips/issues"
 	},
-	"license": "GPL-3.0",
+	"license": "MPL-2.0",
 	"icon": "assets/great-scrollable-tooltips/icon.png",
 	"environment": "client",
 	"entrypoints": {
 		"client": [
-			"online.flowerinsnow.greatscrollabletooltips.GreatScrollableTooltips"
+			"cn.flowerinsnow.greatscrollabletooltips.GreatScrollableTooltips"
 		],
 		"modmenu": [
-			"online.flowerinsnow.greatscrollabletooltips.modmenu.ModMenuImpl"
+			"cn.flowerinsnow.greatscrollabletooltips.modmenu.ModMenuImpl"
 		]
 	},
 	"mixins": [
@@ -33,12 +33,12 @@
 		"fabric": ">=0.34.9"
 	},
 	"suggests": {
-		"another-mod": ">=2.0.2"
+		"modmenu": ">=2.0.2"
 	},
 	"custom": {
 		"modmenu": {
 			"links": {
-				"modmenu.github_releases": "https://github.com/flowerinsnow-lights-opensource/GreatScrollableTooltips/releases"
+				"modmenu.github_releases": "https://github.com/flowerinsnowdh/GreatScrollableTooltips/releases"
 			}
 		}
 	}

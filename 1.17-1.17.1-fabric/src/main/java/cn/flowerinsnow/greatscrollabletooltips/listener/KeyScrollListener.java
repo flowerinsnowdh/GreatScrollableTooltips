@@ -1,17 +1,17 @@
-package online.flowerinsnow.greatscrollabletooltips.listener;
+package cn.flowerinsnow.greatscrollabletooltips.listener;
 
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
-import online.flowerinsnow.greatscrollabletooltips.GreatScrollableTooltips;
-import online.flowerinsnow.greatscrollabletooltips.common.object.ScrollSession;
-import online.flowerinsnow.greatscrollabletooltips.event.PreScreenKeyPressedEvent;
-import online.flowerinsnow.greatscrollabletooltips.manager.KeyBindingManager;
+import cn.flowerinsnow.greatscrollabletooltips.GreatScrollableTooltips;
+import cn.flowerinsnow.greatscrollabletooltips.common.object.ScrollSession;
+import cn.flowerinsnow.greatscrollabletooltips.event.PreScreenKeyPressedEvent;
+import cn.flowerinsnow.greatscrollabletooltips.manager.KeyBindingManager;
 
-public class KeyScrollingListener implements PreScreenKeyPressedEvent {
+public record KeyScrollListener(GreatScrollableTooltips main) implements PreScreenKeyPressedEvent {
     @Override
     public ActionResult preScreenKeyPressed(HandledScreen<?> screen, int keyCode, int scanCode, int modifiers) {
-        ScrollSession<ItemStack> session = GreatScrollableTooltips.getInstance().getScrollSession();
+        ScrollSession<ItemStack> session = this.main.getScrollSession();
         if (session.isRendering()) {
             if (KeyBindingManager.KEY_BINDING_SCROLL_UP.get().matchesKey(keyCode, scanCode)) {
                 session.addVertical(1);

@@ -1,17 +1,17 @@
-package online.flowerinsnow.greatscrollabletooltips.event;
+package cn.flowerinsnow.greatscrollabletooltips.event;
 
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.item.ItemStack;
+import net.minecraft.screen.slot.Slot;
 import net.minecraft.util.ActionResult;
 
 public interface RenderTooltipEvent {
-    interface Post {
-        Event<Post> EVENT = EventFactory.createArrayBacked(Post.class, listeners -> (screen, matrices, stack, x, y) -> {
-            for (Post listener : listeners) {
-                ActionResult actionResult = listener.startDrawMouseoverTooltip(screen, matrices, stack, x, y);
+    interface Pre {
+        Event<Pre> EVENT = EventFactory.createArrayBacked(Pre.class, listeners -> (screen, matrices, x, y, focusedSlot) -> {
+            for (Pre listener : listeners) {
+                ActionResult actionResult = listener.preRenderTooltip(screen, matrices, x, y, focusedSlot);
                 if (actionResult != ActionResult.PASS) {
                     return actionResult;
                 }
@@ -19,13 +19,13 @@ public interface RenderTooltipEvent {
             return ActionResult.PASS;
         });
 
-        ActionResult startDrawMouseoverTooltip(HandledScreen<?> screen, MatrixStack matrices, ItemStack stack, int x, int y);
+        ActionResult preRenderTooltip(HandledScreen<?> screen, MatrixStack matrices, int x, int y, Slot focusedSlot);
     }
 
     interface Miss {
         Event<Miss> EVENT = EventFactory.createArrayBacked(Miss.class, listeners -> screen -> {
             for (Miss listener : listeners) {
-                ActionResult actionResult = listener.onMiss(screen);
+                ActionResult actionResult = listener.missRenderTooltip(screen);
                 if (actionResult != ActionResult.PASS) {
                     return actionResult;
                 }
@@ -33,6 +33,6 @@ public interface RenderTooltipEvent {
             return ActionResult.PASS;
         });
 
-        ActionResult onMiss(HandledScreen<?> screen);
+        ActionResult missRenderTooltip(HandledScreen<?> screen);
     }
 }

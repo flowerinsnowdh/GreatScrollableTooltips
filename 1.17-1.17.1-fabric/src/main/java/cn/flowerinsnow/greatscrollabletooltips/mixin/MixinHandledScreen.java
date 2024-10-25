@@ -1,4 +1,4 @@
-package online.flowerinsnow.greatscrollabletooltips.mixin;
+package cn.flowerinsnow.greatscrollabletooltips.mixin;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -7,7 +7,9 @@ import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
-import online.flowerinsnow.greatscrollabletooltips.event.RenderMouseoverTooltipEvent;
+import cn.flowerinsnow.greatscrollabletooltips.event.PreScreenKeyPressedEvent;
+import cn.flowerinsnow.greatscrollabletooltips.event.PreScreenMouseScrollEvent;
+import cn.flowerinsnow.greatscrollabletooltips.event.RenderTooltipEvent;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -15,6 +17,7 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(HandledScreen.class)
 @Environment(EnvType.CLIENT)
@@ -36,13 +39,27 @@ public class MixinHandledScreen<T extends ScreenHandler> extends Screen {
 
     @Inject(
             method = "drawMouseoverTooltip",
-            at = @At("RETURN")
+            at = @At("HEAD")
     )
     public void drawMouseoverTooltip(MatrixStack matrices, int x, int y, CallbackInfo ci) {
         if (this.handler.getCursorStack().isEmpty() && this.focusedSlot != null && this.focusedSlot.hasStack()) {
-            RenderMouseoverTooltipEvent.Post.EVENT.invoker().startDrawMouseoverTooltip(THIS, matrices, this.focusedSlot.getStack(), x, y);
+            RenderTooltipEvent.Pre.EVENT.invoker().preRenderTooltip(this.THIS, matrices, x, y, this.focusedSlot);
         } else {
-            RenderMouseoverTooltipEvent.Miss.EVENT.invoker().onMiss(THIS);
+            RenderTooltipEvent.Miss.EVENT.invoker().missRenderTooltip(this.THIS);
         }
+    }
+
+    @Inject(
+            method = "keyPressed",
+            at = @At("HEAD")
+    )
+    public void preKeyPressed(int keyCode, int scanCode, int modifiers, CallbackInfoReturnable<Boolean> cir) {
+        PreScreenKeyPressedEvent.EVENT.invoker().preScreenKeyPressed(this.THIS, keyCode, scanCode, modifiers);
+    }
+
+    @Override
+    public boolean mouseScrolled(double mouseX, double mouseY, double amount) {
+        PreScreenMouseScrollEvent.EVENT.invoker().preScreenMouseScrolled(this.THIS, mouseX, mouseY, amount);
+        return super.mouseScrolled(mouseX, mouseY, amount);
     }
 }

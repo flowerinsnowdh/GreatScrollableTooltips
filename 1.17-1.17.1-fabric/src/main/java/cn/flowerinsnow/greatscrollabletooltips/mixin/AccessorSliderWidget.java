@@ -1,4 +1,4 @@
-package online.flowerinsnow.greatscrollabletooltips.mixin;
+package cn.flowerinsnow.greatscrollabletooltips.mixin;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
