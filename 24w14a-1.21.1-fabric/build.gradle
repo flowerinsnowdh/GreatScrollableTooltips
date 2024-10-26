@@ -1,5 +1,5 @@
 plugins() {
-    id('fabric-loom').version('1.8.0-alpha.15')
+    id('fabric-loom').version("${loom_version}")
     id('maven-publish')
 }
 
@@ -16,7 +16,7 @@ repositories() {
 	}
 
 	maven() {
-		url = 'https://maven.pkg.github.com/flowerinsnow-lights-opensource/GreatScrollableTooltips'
+		url = 'https://maven.pkg.github.com/flowerinsnowdh/GreatScrollableTooltips'
 		credentials() {
 			username = "${System.getenv('GITHUB_USERNAME')}"
 			password = "${System.getenv('GITHUB_TOKEN')}"
@@ -44,7 +44,7 @@ dependencies() {
 
 	modImplementation("com.terraformersmc:modmenu:${modmenu_version}")
 	modImplementation('curse.maven:legendary-tooltips-fabric-542478:5591020')
-	include(api("online.flowerinsnow.greatscrollabletooltips:common:${common_module_version}"))
+	include(api("cn.flowerinsnow.greatscrollabletooltips:common:${common_module_version}"))
 	include(api("com.electronwill.night-config:core:${night_config_version}"))
 	include(api("com.electronwill.night-config:toml:${night_config_version}"))
 }
@@ -87,8 +87,4 @@ publishing() {
 		// The repositories here will be used for publishing your artifact, not for
 		// retrieving dependencies.
 	}
-}
-
-loom() {
-	accessWidenerPath = file('src/main/resources/great-scrollable-tooltips.accesswidener')
 }

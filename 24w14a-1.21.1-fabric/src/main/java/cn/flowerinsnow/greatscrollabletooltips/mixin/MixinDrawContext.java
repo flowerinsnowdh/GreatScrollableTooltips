@@ -1,17 +1,46 @@
-package online.flowerinsnow.greatscrollabletooltips.mixin;
+package cn.flowerinsnow.greatscrollabletooltips.mixin;
 
+import cn.flowerinsnow.greatscrollabletooltips.GreatScrollableTooltips;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.DrawContext;
-import online.flowerinsnow.greatscrollabletooltips.GreatScrollableTooltips;
+import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.ModifyArg;
+import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
 @Mixin(DrawContext.class)
 @Environment(EnvType.CLIENT)
 public class MixinDrawContext {
-    @ModifyArg(
+    @ModifyVariable(
+            method = "drawTooltip(Lnet/minecraft/client/font/TextRenderer;Ljava/util/List;IILnet/minecraft/client/gui/tooltip/TooltipPositioner;)V",
+            at = @At(
+                    value = "STORE",
+                    opcode = Opcodes.ISTORE,
+                    ordinal = 0
+            ),
+            index = 11
+    )
+    public int modifyX(int x) {
+        GreatScrollableTooltips main = GreatScrollableTooltips.getInstance();
+        return x + (main.getScrollSession().getHorizontal() * main.getConfig().sensitivity);
+    }
+
+    @ModifyVariable(
+            method = "drawTooltip(Lnet/minecraft/client/font/TextRenderer;Ljava/util/List;IILnet/minecraft/client/gui/tooltip/TooltipPositioner;)V",
+            at = @At(
+                    value = "STORE",
+                    opcode = Opcodes.ISTORE,
+                    ordinal = 0
+            ),
+            index = 12
+    )
+    public int modifyY(int x) {
+        GreatScrollableTooltips main = GreatScrollableTooltips.getInstance();
+        return x + (main.getScrollSession().getVertical() * main.getConfig().sensitivity);
+    }
+
+    /*@ModifyArg(
             method = "method_51743",
             at = @At(
                     value = "INVOKE",
@@ -64,5 +93,5 @@ public class MixinDrawContext {
     public int modifyTextY(int y) {
         GreatScrollableTooltips instance = GreatScrollableTooltips.getInstance();
         return y + (instance.getScrollSession().getVertical() * instance.getConfig().sensitivity);
-    }
+    }*/
 }
