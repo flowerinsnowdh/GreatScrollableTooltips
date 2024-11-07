@@ -1,4 +1,4 @@
-package online.flowerinsnow.greatscrollabletooltips.manager;
+package cn.flowerinsnow.greatscrollabletooltips.manager;
 
 import net.minecraft.client.KeyMapping;
 import net.minecraftforge.client.event.RegisterKeyMappingsEvent;

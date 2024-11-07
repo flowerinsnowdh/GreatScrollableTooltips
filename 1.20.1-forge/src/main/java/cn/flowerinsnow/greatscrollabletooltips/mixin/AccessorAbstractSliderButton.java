@@ -1,4 +1,4 @@
-package online.flowerinsnow.greatscrollabletooltips.mixin;
+package cn.flowerinsnow.greatscrollabletooltips.mixin;
 
 import net.minecraft.client.gui.components.AbstractSliderButton;
 import org.spongepowered.asm.mixin.Mixin;

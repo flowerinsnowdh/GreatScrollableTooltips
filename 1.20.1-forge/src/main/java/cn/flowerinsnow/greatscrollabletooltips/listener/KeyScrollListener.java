@@ -1,13 +1,13 @@
-package online.flowerinsnow.greatscrollabletooltips.listener;
+package cn.flowerinsnow.greatscrollabletooltips.listener;
 
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import online.flowerinsnow.greatscrollabletooltips.GreatScrollableTooltips;
-import online.flowerinsnow.greatscrollabletooltips.manager.KeyBindingManager;
-import online.flowerinsnow.greatscrollabletooltips.event.PreScreenKeyPressedEvent;
-import online.flowerinsnow.greatscrollabletooltips.object.ScrollSession;
+import cn.flowerinsnow.greatscrollabletooltips.GreatScrollableTooltips;
+import cn.flowerinsnow.greatscrollabletooltips.manager.KeyBindingManager;
+import cn.flowerinsnow.greatscrollabletooltips.event.PreScreenKeyPressedEvent;
+import cn.flowerinsnow.greatscrollabletooltips.common.object.ScrollSession;
 
 @OnlyIn(Dist.CLIENT)
 public class KeyScrollListener {

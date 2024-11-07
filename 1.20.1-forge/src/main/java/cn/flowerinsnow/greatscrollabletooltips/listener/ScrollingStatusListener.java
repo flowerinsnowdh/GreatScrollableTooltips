@@ -1,11 +1,11 @@
-package online.flowerinsnow.greatscrollabletooltips.listener;
+package cn.flowerinsnow.greatscrollabletooltips.listener;
 
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import online.flowerinsnow.greatscrollabletooltips.GreatScrollableTooltips;
-import online.flowerinsnow.greatscrollabletooltips.event.RenderTooltipEvent;
-import online.flowerinsnow.greatscrollabletooltips.event.ScreenCloseEvent;
-import online.flowerinsnow.greatscrollabletooltips.object.ScrollSession;
+import cn.flowerinsnow.greatscrollabletooltips.GreatScrollableTooltips;
+import cn.flowerinsnow.greatscrollabletooltips.event.RenderTooltipEvent;
+import cn.flowerinsnow.greatscrollabletooltips.event.ScreenCloseEvent;
+import cn.flowerinsnow.greatscrollabletooltips.common.object.ScrollSession;
 
 import java.util.Objects;
 

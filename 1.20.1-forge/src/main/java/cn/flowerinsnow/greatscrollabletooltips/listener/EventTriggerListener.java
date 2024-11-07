@@ -1,12 +1,12 @@
-package online.flowerinsnow.greatscrollabletooltips.listener;
+package cn.flowerinsnow.greatscrollabletooltips.listener;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import online.flowerinsnow.greatscrollabletooltips.event.ClientTickEndEvent;
-import online.flowerinsnow.greatscrollabletooltips.event.ScreenCloseEvent;
+import cn.flowerinsnow.greatscrollabletooltips.event.ClientTickEndEvent;
+import cn.flowerinsnow.greatscrollabletooltips.event.ScreenCloseEvent;
 
 public class EventTriggerListener {
     @SubscribeEvent

@@ -1,4 +1,4 @@
-package online.flowerinsnow.greatscrollabletooltips.mixin;
+package cn.flowerinsnow.greatscrollabletooltips.mixin;
 
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
@@ -8,9 +8,9 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
-import online.flowerinsnow.greatscrollabletooltips.event.PreScreenKeyPressedEvent;
-import online.flowerinsnow.greatscrollabletooltips.event.PreScreenMouseScrollEvent;
-import online.flowerinsnow.greatscrollabletooltips.event.RenderTooltipEvent;
+import cn.flowerinsnow.greatscrollabletooltips.event.PreScreenKeyPressedEvent;
+import cn.flowerinsnow.greatscrollabletooltips.event.PreScreenMouseScrollEvent;
+import cn.flowerinsnow.greatscrollabletooltips.event.RenderTooltipEvent;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;

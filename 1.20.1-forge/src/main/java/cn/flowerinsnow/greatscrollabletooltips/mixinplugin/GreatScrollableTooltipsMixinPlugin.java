@@ -1,4 +1,4 @@
-package online.flowerinsnow.greatscrollabletooltips.mixinplugin;
+package cn.flowerinsnow.greatscrollabletooltips.mixinplugin;
 
 import net.minecraftforge.fml.loading.FMLLoader;
 import org.objectweb.asm.tree.ClassNode;
@@ -23,9 +23,6 @@ public class GreatScrollableTooltipsMixinPlugin implements IMixinConfigPlugin {
         // LegendaryTooltips
         if ("online.flowerinsnow.greatscrollabletooltips.mixin.legendarytooltips.MixinLegendaryTooltips".equals(mixinClassName) || "online.flowerinsnow.greatscrollabletooltips.mixin.legendarytooltips.MixinItemModelComponent".equals(mixinClassName)) {
             return FMLLoader.getLoadingModList().getModFileById("legendarytooltips") != null;
-        // Apotheosis
-        } else if ("online.flowerinsnow.greatscrollabletooltips.mixin.apotheosis.MixinSocketTooltipRenderer".equals(mixinClassName)) {
-            return FMLLoader.getLoadingModList().getModFileById("apotheosis") != null;
         }
         return true;
     }

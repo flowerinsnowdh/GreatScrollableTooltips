@@ -1,4 +1,4 @@
-package online.flowerinsnow.greatscrollabletooltips;
+package cn.flowerinsnow.greatscrollabletooltips;
 
 import net.minecraft.CrashReport;
 import net.minecraft.client.Minecraft;
@@ -11,14 +11,13 @@ import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.fml.loading.FMLLoader;
 import net.minecraftforge.fml.loading.FMLPaths;
-import online.flowerinsnow.greatscrollabletooltips.config.GreatScrollableTooltipsConfig;
-import online.flowerinsnow.greatscrollabletooltips.listener.*;
-import online.flowerinsnow.greatscrollabletooltips.manager.KeyBindingManager;
-import online.flowerinsnow.greatscrollabletooltips.object.ScrollSession;
-import online.flowerinsnow.greatscrollabletooltips.provider.ModEnvironmentProvider;
-import online.flowerinsnow.greatscrollabletooltips.screen.ConfigScreen;
+import cn.flowerinsnow.greatscrollabletooltips.common.config.GreatScrollableTooltipsConfig;
+import cn.flowerinsnow.greatscrollabletooltips.listener.*;
+import cn.flowerinsnow.greatscrollabletooltips.manager.KeyBindingManager;
+import cn.flowerinsnow.greatscrollabletooltips.common.object.ScrollSession;
+import cn.flowerinsnow.greatscrollabletooltips.common.provider.ModEnvironmentProvider;
+import cn.flowerinsnow.greatscrollabletooltips.screen.ConfigScreen;
 
 import java.io.InputStream;
 import java.nio.file.Path;
@@ -86,10 +85,6 @@ public class GreatScrollableTooltips {
         eventBus.register(new KeyScrollListener());
 
         eventBus.addListener(this::initKeyBindings);
-
-        if (FMLLoader.getLoadingModList().getModFileById("appleskin") != null) {
-            eventBus.register(new AppleSkinListener());
-        }
     }
 
     public void initKeyBindings(RegisterKeyMappingsEvent event) {

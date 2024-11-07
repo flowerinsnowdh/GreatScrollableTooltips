@@ -1,4 +1,4 @@
-package online.flowerinsnow.greatscrollabletooltips.event;
+package cn.flowerinsnow.greatscrollabletooltips.event;
 
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraftforge.eventbus.api.Event;

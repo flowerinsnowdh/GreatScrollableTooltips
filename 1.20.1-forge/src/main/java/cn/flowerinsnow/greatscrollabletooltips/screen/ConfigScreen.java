@@ -1,4 +1,4 @@
-package online.flowerinsnow.greatscrollabletooltips.screen;
+package cn.flowerinsnow.greatscrollabletooltips.screen;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
@@ -8,8 +8,8 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import online.flowerinsnow.greatscrollabletooltips.config.GreatScrollableTooltipsConfig;
-import online.flowerinsnow.greatscrollabletooltips.mixin.AccessorAbstractSliderButton;
+import cn.flowerinsnow.greatscrollabletooltips.common.config.GreatScrollableTooltipsConfig;
+import cn.flowerinsnow.greatscrollabletooltips.mixin.AccessorAbstractSliderButton;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
