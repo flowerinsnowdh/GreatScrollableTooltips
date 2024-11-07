@@ -26,7 +26,7 @@ jobs:
 
       - name: Build with Gradle Wrapper
         run: |
-          cd 24w14a-1.21.1-fabric/
+          cd 24w33a-24w45a-fabric/
           chmod +x gradlew
           ./gradlew build
         env:
@@ -36,4 +36,4 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
-          files: 24w14a-1.21.1-fabric/build/libs/*.jar
+          files: 24w33a-24w45a-fabric/build/libs/*.jar
