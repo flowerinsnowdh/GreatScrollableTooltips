@@ -1,11 +1,11 @@
-package online.flowerinsnow.greatscrollabletooltips.tweaker;
+package cn.flowerinsnow.greatscrollabletooltips.tweaker;
 
 import net.minecraft.launchwrapper.ITweaker;
 import net.minecraft.launchwrapper.LaunchClassLoader;
 import net.minecraftforge.fml.relauncher.CoreModManager;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import online.flowerinsnow.greatscrollabletooltips.GreatScrollableTooltips;
+import cn.flowerinsnow.greatscrollabletooltips.GreatScrollableTooltips;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.spongepowered.asm.launch.MixinBootstrap;

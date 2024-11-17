@@ -15,12 +15,12 @@ buildscript() {
         classpath('org.spongepowered:mixingradle:0.6-SNAPSHOT')
     }
 }
-apply('plugin' : 'net.minecraftforge.gradle.forge')
-apply('plugin' : 'com.github.johnrengelman.shadow')
-apply('plugin' : 'org.spongepowered.mixin')
+apply('plugin': 'net.minecraftforge.gradle.forge')
+apply('plugin': 'com.github.johnrengelman.shadow')
+apply('plugin': 'org.spongepowered.mixin')
 
-version = '1.3.0'
-group= "online.flowerinsnow.greatscrollabletooltips"
+version = '1.4.0'
+group= "cn.flowerinsnow.greatscrollabletooltips"
 archivesBaseName = "great-scrollable-tooltips"
 
 minecraft() {
@@ -32,22 +32,36 @@ minecraft() {
 }
 
 repositories() {
-    mavenLocal()
     mavenCentral()
-    maven {
-        url = 'https://repo.spongepowered.org/repository/maven-public/'
+
+    maven() {
+        url = 'https://maven.pkg.github.com/flowerinsnowdh/GreatScrollableTooltips'
+        credentials() {
+            username = "${System.getenv('GITHUB_USERNAME')}"
+            password = "${System.getenv('GITHUB_TOKEN')}"
+        }
     }
-    maven {
-        url = 'https://repo.flowerinsnow.online/repository/maven-public/'
+
+    maven() {
+        url = 'https://repo.spongepowered.org/repository/maven-public/'
     }
 }
 
+configurations() {
+    shade
+    compile.extendsFrom(shade)
+}
+
 dependencies() {
-    compile('online.flowerinsnow.fnml:fnml4j-core:1.0.3')
-    compile('org.spongepowered:mixin:0.7.11-SNAPSHOT') {
-        exclude('module' : 'guava')
-        exclude('module' : 'commons-io')
-        exclude('module' : 'gson')
+    compile("cn.flowerinsnow.greatscrollabletooltips:common:${version_common_module}") {
+        exclude('module': 'core')
+        exclude('module': 'toml')
+    }
+    shade("com.electronwill.night-config:toml:${version_night_config}")
+    shade('org.spongepowered:mixin:0.7.11-SNAPSHOT') {
+        exclude('module': 'guava')
+        exclude('module': 'commons-io')
+        exclude('module': 'gson')
     }
 }
 
@@ -80,31 +94,38 @@ tasks.withType(JavaCompile).configureEach() {
 shadowJar() {
     manifest() {
         attributes([
-                'TweakClass': 'online.flowerinsnow.greatscrollabletooltips.tweaker.GreatScrollableTooltipsTweaker'
+                'TweakClass': 'cn.flowerinsnow.greatscrollabletooltips.tweaker.GreatScrollableTooltipsTweaker'
         ])
     }
 
+//    configurations = [
+//            project.configurations.shade
+//    ]
+
     dependencies() {
-        include(dependency('online.flowerinsnow.fnml:fnml4j-core:1.0.4'))
+        include(dependency("cn.flowerinsnow.greatscrollabletooltips:common:${version_common_module}"))
+        include(dependency("com.electronwill.night-config:core:${version_night_config}"))
+        include(dependency("com.electronwill.night-config:toml:${version_night_config}"))
         include(dependency('org.spongepowered:mixin:0.7.11-SNAPSHOT'))
     }
     exclude('LICENSE.txt')
     exclude('dummyThing')
 
-    ArrayList<String> packagesToLocate = [
-            'online.flowerinsnow.fnml4j.api',
-            'online.flowerinsnow.fnml4j.core'
+    ArrayList<String> packagesToRelocate = [
+            'com.electronwill.nightconfig.core',
+            'com.electronwill.nightconfig.toml'
     ]
 
-    packagesToLocate.forEach() {
-        relocate(it, "online.flowerinsnow.greatscrollabletooltips.shaded.$it")
+    packagesToRelocate.forEach() {
+        relocate(it, "cn.flowerinsnow.greatscrollabletooltips.shaded.$it")
     }
 
-    classifier ''
+    classifier = ''
 }
 
 reobf() {
-    shadowJar {}
+    shadowJar() {
+    }
 }
 
 mixin() {
