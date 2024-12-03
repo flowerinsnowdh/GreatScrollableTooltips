@@ -29,7 +29,8 @@ import java.nio.file.Path;
         name = GreatScrollableTooltips.NAME,
         version = GreatScrollableTooltips.VERSION,
         clientSideOnly = true,
-        guiFactory = "cn.flowerinsnow.greatscrollabletooltips.screen.GreatScrollableTooltipsGuiFactory"
+        guiFactory = "cn.flowerinsnow.greatscrollabletooltips.screen.GreatScrollableTooltipsGuiFactory",
+        acceptedMinecraftVersions = "[1.8.9,1.10]"
 )
 @SideOnly(Side.CLIENT)
 public class GreatScrollableTooltips {
