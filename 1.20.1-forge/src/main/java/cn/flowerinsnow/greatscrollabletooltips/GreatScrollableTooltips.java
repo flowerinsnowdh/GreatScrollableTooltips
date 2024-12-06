@@ -82,7 +82,7 @@ public class GreatScrollableTooltips {
         eventBus.register(new ScrollingStatusListener(this));
 
         // 按键滚动时
-        eventBus.register(new KeyScrollListener());
+        eventBus.register(new KeyScrollListener(this));
 
         eventBus.addListener(this::initKeyBindings);
     }

@@ -7,7 +7,6 @@
     "client": [
         "MixinHandledScreen",
         "MixinDrawContext",
-        "AccessorAbstractSliderButton",
         "legendarytooltips.MixinLegendaryTooltips"
     ],
     "injectors": {

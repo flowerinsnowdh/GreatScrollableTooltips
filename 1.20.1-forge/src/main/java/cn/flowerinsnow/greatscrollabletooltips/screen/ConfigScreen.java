@@ -4,12 +4,12 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractSliderButton;
 import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import cn.flowerinsnow.greatscrollabletooltips.common.config.GreatScrollableTooltipsConfig;
-import cn.flowerinsnow.greatscrollabletooltips.mixin.AccessorAbstractSliderButton;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -29,56 +29,38 @@ public class ConfigScreen extends Screen {
     protected void init() {
         this.addRenderableWidget(
                 new Button.Builder(
-                        Component.translatable(
-                                this.config.enable ?
-                                        "great-scrollable-tooltips.ui.config.enable.true" :
-                                        "great-scrollable-tooltips.ui.config.enable.false"
-                        ),
+                        Component.translatable(this.config.enable ? "great-scrollable-tooltips.ui.config.enable.true" : "great-scrollable-tooltips.ui.config.enable.false"),
                         button -> {
                             GreatScrollableTooltipsConfig config = ConfigScreen.this.config;
-                            if (config.enable) {
-                                button.setMessage(Component.translatable("great-scrollable-tooltips.ui.config.enable.false"));
-                                config.enable = false;
-                            } else {
-                                button.setMessage(Component.translatable("great-scrollable-tooltips.ui.config.enable.true"));
-                                config.enable = true;
-                            }
+                            config.enable = !config.enable;
+                            button.setMessage(Component.translatable(config.enable ? "great-scrollable-tooltips.ui.config.enable.true" : "great-scrollable-tooltips.ui.config.enable.false"));
+                            config.save();
                         })
-                        .pos(this.width / 2 - 100, this.height / 2 - 70)
+                        .pos(this.width / 2 - 100, this.height / 2 - 48)
                         .size(200, 20)
                         .build()
         );
 
         this.addRenderableWidget(
                 new Button.Builder(
-                        Component.translatable(
-                                this.config.autoReset ?
-                                        "great-scrollable-tooltips.ui.config.auto-reset.true" :
-                                        "great-scrollable-tooltips.ui.config.auto-reset.false"
-                        ),
+                        Component.translatable(this.config.autoReset ? "great-scrollable-tooltips.ui.config.auto-reset.true" : "great-scrollable-tooltips.ui.config.auto-reset.false"),
                         button -> {
                             GreatScrollableTooltipsConfig config = ConfigScreen.this.config;
-                            if (config.autoReset) {
-                                button.setMessage(Component.translatable("great-scrollable-tooltips.ui.config.auto-reset.false"));
-                                config.autoReset = false;
-                            } else {
-                                button.setMessage(Component.translatable("great-scrollable-tooltips.ui.config.auto-reset.true"));
-                                config.autoReset = true;
-                            }
+                            config.autoReset = !config.autoReset;
+                            button.setMessage(Component.translatable(config.autoReset ? "great-scrollable-tooltips.ui.config.auto-reset.true" : "great-scrollable-tooltips.ui.config.auto-reset.false"));
+                            config.save();
                         })
-                        .pos(this.width / 2 - 100, this.height / 2 - 45)
+                        .pos(this.width / 2 - 100, this.height / 2 - 23)
                         .size(200, 20)
+                        .tooltip(Tooltip.create(Component.translatable("great-scrollable-tooltips.ui.config.auto-reset.tooltip")))
                         .build()
         );
 
         this.addRenderableWidget(
                 this.sensitivitySlider = new AbstractSliderButton(
-                        this.width / 2 - 100, this.height / 2 - 20,
+                        this.width / 2 - 100, this.height / 2 + 2,
                         200, 20,
-                        Component.translatable(
-                                "great-scrollable-tooltips.ui.config.sensitivity",
-                                this.config.sensitivity
-                        ),
+                        Component.translatable("great-scrollable-tooltips.ui.config.sensitivity", this.config.sensitivity),
                         new BigDecimal(this.config.sensitivity)
                                 .add(new BigDecimal(-1))
                                 .divide(new BigDecimal(99), 2, RoundingMode.UP)
@@ -99,47 +81,23 @@ public class ConfigScreen extends Screen {
 
                     @Override
                     protected void applyValue() {
+                        ConfigScreen.this.config.sensitivity = BigDecimal.valueOf(this.value)
+                                .multiply(new BigDecimal(99))
+                                .add(BigDecimal.ONE)
+                                .setScale(0, RoundingMode.DOWN)
+                                .intValue();
                     }
                 }
         );
+
         this.addRenderableWidget(
                 new Button.Builder(
-                        Component.translatable("great-scrollable-tooltips.ui.config.reload"),
+                        Component.translatable("great-scrollable-tooltips.ui.config.done"),
                         button -> {
                             ConfigScreen instance = ConfigScreen.this;
-                            instance.config.load();
-                            Minecraft.getInstance().setScreen(new ConfigScreen(instance.parent, instance.config));
-                        })
-                        .pos(this.width / 2 - 100, this.height / 2 + 5)
-                        .size(200, 20)
-                        .build()
-        );
-        this.addRenderableWidget(
-                new Button.Builder(
-                        Component.translatable("great-scrollable-tooltips.ui.config.save-and-exit"),
-                        button -> {
-                            ConfigScreen instance = ConfigScreen.this;
-                            GreatScrollableTooltipsConfig config = instance.config;
-                            // config.sensitivity = BigDecimal.valueOf(instance.sensitivitySlider.value)
-                            AccessorAbstractSliderButton accessor = (AccessorAbstractSliderButton) (instance.sensitivitySlider);
-                            config.sensitivity = BigDecimal.valueOf(accessor.getValue())
-                                    .multiply(new BigDecimal(99))
-                                    .add(BigDecimal.ONE)
-                                    .setScale(0, RoundingMode.DOWN)
-                                    .intValue();
-                            config.save();
                             Minecraft.getInstance().setScreen(instance.parent);
                         })
-                        .pos(this.width / 2 - 100, this.height / 2 + 30)
-                        .size(200, 20)
-                        .build()
-        );
-        this.addRenderableWidget(
-                new Button.Builder(
-                        Component.translatable("great-scrollable-tooltips.ui.config.discard-and-exit"),
-                        button -> Minecraft.getInstance().setScreen(ConfigScreen.this.parent)
-                )
-                        .pos(this.width / 2 - 100, this.height / 2 + 55)
+                        .pos(this.width / 2 - 100, this.height / 2 + 27)
                         .size(200, 20)
                         .build()
         );

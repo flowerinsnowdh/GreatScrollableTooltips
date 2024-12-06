@@ -9,11 +9,17 @@ import cn.flowerinsnow.greatscrollabletooltips.manager.KeyBindingManager;
 import cn.flowerinsnow.greatscrollabletooltips.event.PreScreenKeyPressedEvent;
 import cn.flowerinsnow.greatscrollabletooltips.common.object.ScrollSession;
 
+import java.util.Objects;
+
 @OnlyIn(Dist.CLIENT)
-public class KeyScrollListener {
+public record KeyScrollListener(GreatScrollableTooltips main) {
+    public KeyScrollListener(GreatScrollableTooltips main) {
+        this.main = Objects.requireNonNull(main);
+    }
+
     @SubscribeEvent
     public void onScreenKeyPressed(PreScreenKeyPressedEvent event) {
-        ScrollSession<ItemStack> session = GreatScrollableTooltips.getInstance().getScrollSession();
+        ScrollSession<ItemStack> session = this.main.getScrollSession();
         int keyCode = event.getKeyCode();
         int scanCode = event.getScanCode();
 
