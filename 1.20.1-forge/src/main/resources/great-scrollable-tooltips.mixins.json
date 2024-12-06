@@ -7,7 +7,8 @@
     "client": [
         "MixinHandledScreen",
         "MixinDrawContext",
-        "legendarytooltips.MixinLegendaryTooltips"
+        "legendarytooltips.MixinLegendaryTooltips",
+        "obscuretooltips.MixinTooltipRenderer"
     ],
     "injectors": {
         "defaultRequire": 1

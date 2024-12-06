@@ -24,6 +24,7 @@ public class EventTriggerListener {
             if (this.oldScreen != null) {
                 MinecraftForge.EVENT_BUS.post(new ScreenCloseEvent(this.oldScreen));
             }
+            this.oldScreen = currentScreen;
         }
     }
 }
