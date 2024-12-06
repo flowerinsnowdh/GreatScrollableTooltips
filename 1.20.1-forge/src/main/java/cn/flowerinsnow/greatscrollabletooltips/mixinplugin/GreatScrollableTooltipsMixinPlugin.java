@@ -21,8 +21,12 @@ public class GreatScrollableTooltipsMixinPlugin implements IMixinConfigPlugin {
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
         // LegendaryTooltips
-        if ("online.flowerinsnow.greatscrollabletooltips.mixin.legendarytooltips.MixinLegendaryTooltips".equals(mixinClassName) || "online.flowerinsnow.greatscrollabletooltips.mixin.legendarytooltips.MixinItemModelComponent".equals(mixinClassName)) {
+        if ("cn.flowerinsnow.greatscrollabletooltips.mixin.legendarytooltips.MixinLegendaryTooltips".equals(mixinClassName)) {
             return FMLLoader.getLoadingModList().getModFileById("legendarytooltips") != null;
+        }
+        // Obscure Tooltips
+        if ("cn.flowerinsnow.greatscrollabletooltips.mixin.obscuretooltips.MixinTooltipRenderer".equals(mixinClassName)) {
+            return FMLLoader.getLoadingModList().getModFileById("obscure_tooltips") != null;
         }
         return true;
     }

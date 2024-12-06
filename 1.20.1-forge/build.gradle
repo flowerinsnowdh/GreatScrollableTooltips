@@ -172,6 +172,10 @@ dependencies() {
     // https://www.curseforge.com/minecraft/mc-mods/legendary-tooltips/files/4662781
     compileOnly(fg.deobf("curse.maven:legendary-tooltips-532127:4662781"))
 
+    // Obscure Tooltips 2.2
+    // https://www.curseforge.com/minecraft/mc-mods/obscure-tooltips/files/4686579
+    compileOnly(fg.deobf("curse.maven:obscure-tooltips-715660:4686579"))
+
     implementation("cn.flowerinsnow.greatscrollabletooltips:common:[${version_common_module}]")
     jarJar("cn.flowerinsnow.greatscrollabletooltips:common:[${version_common_module}]")
 
