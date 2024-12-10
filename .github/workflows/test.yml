@@ -1,0 +1,103 @@
+name: "Test build"
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  test-build:
+    name: "Test build"
+    runs-on: "ubuntu-latest"
+    permissions:
+      contents: read
+    strategy:
+      matrix:
+        dir:
+          - common
+          - 1.16-1.16.1-fabric
+          - 1.16.2-1.16.5-fabric
+          - 1.17-1.17.1-fabric
+          - 1.18-1.18.2-fabric
+          - 1.19-1.19.1-fabric
+          - 1.19.2-fabric
+          - 1.19.3-1.19.4-fabric
+          - 1.20-1.20.1-fabric
+          - 1.20.2-24w13a-fabric
+          - 24w14a-1.21.1-fabric
+          - 24w33a-fabric
+          - 1.8.9-1.10-forge
+          - 1.10.2-1.11-forge
+          - 1.11.2-1.12.2-forge
+          - 1.18.2-forge
+          - 1.19.2-forge
+          - 1.19.4-forge
+          - 1.20.1-forge
+        include:
+          - dir: common
+            java-verion: 8
+          - dir: 1.16-1.16.1-fabric
+            java-verion: 17
+          - dir: 1.16.2-1.16.5-fabric
+            java-verion: 17
+          - dir: 1.17-1.17.1-fabric
+            java-verion: 17
+          - dir: 1.18-1.18.2-fabric
+            java-verion: 17
+          - dir: 1.19-1.19.1-fabric
+            java-verion: 17
+          - dir: 1.19.2-fabric
+            java-verion: 17
+          - dir: 1.19.3-1.19.4-fabric
+            java-verion: 17
+          - dir: 1.20-1.20.1-fabric
+            java-verion: 17
+          - dir: 1.20.2-24w13a-fabric
+            java-verion: 17
+          - dir: 24w14a-1.21.1-fabric
+            java-verion: 21
+          - dir: 24w33a-fabric
+            java-verion: 21
+          - dir: 1.8.9-1.10-forge
+            java-verion: 8
+            decompile: true
+          - dir: 1.10.2-1.11-forge
+            java-verion: 8
+          - dir: 1.11.2-1.12.2-forge
+            java-verion: 8
+          - dir: 1.18.2-forge
+            java-verion: 17
+          - dir: 1.19.2-forge
+            java-verion: 17
+          - dir: 1.19.4-forge
+            java-verion: 17
+          - dir: 1.20.1-forge
+            java-verion: 17
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK ${{ matrix.java-verion }}
+        uses: actions/setup-java@v4
+        with:
+          java-version: ${{ matrix.java-verion }}
+          distribution: temurin
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+
+      - name: Build with Gradle Wrapper
+        run: |
+          cd ${{ matrix.dir }}/
+          chmod +x gradlew
+          if [ -n "$DECOMPILE" ]; then
+              ./gradlew setupDecompWorkspace
+          fi
+          ./gradlew build
+        env:
+          GITHUB_USERNAME: ${{ secrets.GH_PKG_USERNAME }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DECOMPILE: ${{ matrix.decompile }}
