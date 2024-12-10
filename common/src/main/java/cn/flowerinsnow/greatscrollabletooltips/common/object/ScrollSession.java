@@ -15,10 +15,6 @@ public class ScrollSession<I> {
      * <p>当前水平滚动值</p>
      */
     private int vertical;
-    /**
-     * <p>本 tick 是否渲染中</p>
-     */
-    private boolean rendering;
 
     /**
      * <p>最后一次渲染的物品</p>
@@ -51,11 +47,7 @@ public class ScrollSession<I> {
     }
 
     public boolean isRendering() {
-        return this.rendering;
-    }
-
-    public void setRendering(boolean rendering) {
-        this.rendering = rendering;
+        return this.lastItemStackRendered != null;
     }
 
     public I getLastItemStackRendered() {
@@ -79,7 +71,7 @@ public class ScrollSession<I> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ScrollSession<?> that = (ScrollSession<?>) o;
-        return this.horizontal == that.horizontal && this.vertical == that.vertical && this.rendering == that.rendering && Objects.equals(this.lastItemStackRendered, that.lastItemStackRendered);
+        return this.horizontal == that.horizontal && this.vertical == that.vertical && Objects.equals(this.lastItemStackRendered, that.lastItemStackRendered);
     }
 
     @Override
@@ -87,7 +79,6 @@ public class ScrollSession<I> {
         int result = 17;
         result = 31 * result + this.horizontal;
         result = 31 * result + this.vertical;
-        result = 31 * result + (this.rendering ? 1231 : 1237);
         result = 31 * result + (this.lastItemStackRendered != null ? this.lastItemStackRendered.hashCode() : 0);
         return result;
     }
@@ -97,7 +88,6 @@ public class ScrollSession<I> {
         return "ScrollSession{" +
                 "horizontal=" + this.horizontal +
                 ", vertical=" + this.vertical +
-                ", rendering=" + this.rendering +
                 ", lastItemStackRendered=" + this.lastItemStackRendered +
                 '}';
     }
