@@ -50,7 +50,7 @@ dependencies() {
 }
 
 processResources() {
-	LinkedHashMap<String, ?> props = ['version': project.version]
+	LinkedHashMap<String, ?> props = ['version' : project.version]
 	props.forEach(inputs::property)
 
 	filesMatching('fabric.mod.json') {

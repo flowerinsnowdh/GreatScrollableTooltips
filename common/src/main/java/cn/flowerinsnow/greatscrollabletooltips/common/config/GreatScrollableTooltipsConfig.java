@@ -22,11 +22,6 @@ public class GreatScrollableTooltipsConfig {
     public boolean enable;
     public int sensitivity;
     public boolean autoReset;
-    /**
-     * 是否允许在按住 Ctrl 时使用鼠标滚动
-     */
-    public boolean bundleWithCtrl;
-    public boolean bundleWithCtrlTip;
 
     public void saveDefaultConfig() {
         Path configFile = this.environmentProvider.getConfigFile();
@@ -66,8 +61,6 @@ public class GreatScrollableTooltipsConfig {
         this.enable = config.get("enable");
         this.sensitivity = config.getInt("sensitivity");
         this.autoReset = config.get("auto_reset");
-        this.bundleWithCtrl = config.get("bundle_with_ctrl");
-        this.bundleWithCtrlTip = config.get("bundle_with_ctrl_tip");
     }
 
     public void save() {
@@ -76,8 +69,6 @@ public class GreatScrollableTooltipsConfig {
         config.set("enable", this.enable);
         config.set("sensitivity", this.sensitivity);
         config.set("auto_reset", this.autoReset);
-        config.set("bundle_with_ctrl", this.bundleWithCtrl);
-        config.set("bundle_with_ctrl_tip", this.bundleWithCtrlTip);
         TomlWriter writer = format.createWriter();
         try {
             writer.write(config, this.environmentProvider.getConfigFile(), WritingMode.REPLACE, StandardCharsets.UTF_8);
