@@ -16,12 +16,12 @@ public class ScrollSession<I> {
      */
     private int vertical;
     /**
-     * <p>本 tick 是否渲染中</p>
+     * <p>当前正在渲染的物品堆</p>
      */
-    private boolean rendering;
+    private I itemStackRendering;
 
     /**
-     * <p>最后一次渲染的物品</p>
+     * <p>上一次渲染的物品堆</p>
      * <p>记录以方便判断是否要回正</p>
      */
     private I lastItemStackRendered;
@@ -50,12 +50,16 @@ public class ScrollSession<I> {
         this.vertical += value;
     }
 
-    public boolean isRendering() {
-        return this.rendering;
+    public boolean isItemStackRendering() {
+        return this.itemStackRendering != null;
     }
 
-    public void setRendering(boolean rendering) {
-        this.rendering = rendering;
+    public I getItemStackRendering() {
+        return this.itemStackRendering;
+    }
+
+    public void setItemStackRendering(I itemStackRendering) {
+        this.itemStackRendering = itemStackRendering;
     }
 
     public I getLastItemStackRendered() {
@@ -79,7 +83,7 @@ public class ScrollSession<I> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ScrollSession<?> that = (ScrollSession<?>) o;
-        return this.horizontal == that.horizontal && this.vertical == that.vertical && this.rendering == that.rendering && Objects.equals(this.lastItemStackRendered, that.lastItemStackRendered);
+        return this.horizontal == that.horizontal && this.vertical == that.vertical && Objects.equals(this.itemStackRendering, that.itemStackRendering) && Objects.equals(this.lastItemStackRendered, that.lastItemStackRendered);
     }
 
     @Override
@@ -87,7 +91,7 @@ public class ScrollSession<I> {
         int result = 17;
         result = 31 * result + this.horizontal;
         result = 31 * result + this.vertical;
-        result = 31 * result + (this.rendering ? 1231 : 1237);
+        result = 31 * result + (this.itemStackRendering != null ? this.itemStackRendering.hashCode() : 0);
         result = 31 * result + (this.lastItemStackRendered != null ? this.lastItemStackRendered.hashCode() : 0);
         return result;
     }
@@ -97,7 +101,7 @@ public class ScrollSession<I> {
         return "ScrollSession{" +
                 "horizontal=" + this.horizontal +
                 ", vertical=" + this.vertical +
-                ", rendering=" + this.rendering +
+                ", itemStackRendering=" + this.itemStackRendering +
                 ", lastItemStackRendered=" + this.lastItemStackRendered +
                 '}';
     }

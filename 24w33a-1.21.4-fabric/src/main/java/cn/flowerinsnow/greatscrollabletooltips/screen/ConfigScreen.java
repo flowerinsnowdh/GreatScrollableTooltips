@@ -1,12 +1,12 @@
 package cn.flowerinsnow.greatscrollabletooltips.screen;
 
 import cn.flowerinsnow.greatscrollabletooltips.common.config.GreatScrollableTooltipsConfig;
-import cn.flowerinsnow.greatscrollabletooltips.mixin.AccessorSliderWidget;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.tooltip.Tooltip;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.SliderWidget;
 import net.minecraft.text.Text;
@@ -18,7 +18,6 @@ import java.math.RoundingMode;
 public class ConfigScreen extends Screen {
     private final Screen parent;
     private final GreatScrollableTooltipsConfig config;
-    private SliderWidget sensitivitySlider;
     public ConfigScreen(Screen parent, GreatScrollableTooltipsConfig config) {
         super(Text.translatable("great-scrollable-tooltips.ui.title"));
         this.parent = parent;
@@ -32,32 +31,35 @@ public class ConfigScreen extends Screen {
                         Text.translatable(this.config.enable ? "great-scrollable-tooltips.ui.config.enable.true" : "great-scrollable-tooltips.ui.config.enable.false"),
                         button -> {
                             GreatScrollableTooltipsConfig config = ConfigScreen.this.config;
-                            button.setMessage(Text.translatable(config.enable ? "great-scrollable-tooltips.ui.config.enable.false" : "great-scrollable-tooltips.ui.config.enable.true"));
                             config.enable = !config.enable;
+                            config.save();
+                            button.setMessage(Text.translatable(config.enable ? "great-scrollable-tooltips.ui.config.enable.true" : "great-scrollable-tooltips.ui.config.enable.false"));
                         }
                 )
-                        .position(this.width / 2 - 100, this.height / 2 - 70)
+                        .position(this.width / 2 - 100, this.height / 2 - 48)
                         .size(200, 20)
                         .build()
         );
 
         this.addDrawableChild(
                 ButtonWidget.builder(
-                                Text.translatable(this.config.autoReset ? "great-scrollable-tooltips.ui.config.auto-reset.true" : "great-scrollable-tooltips.ui.config.auto-reset.false"),
-                                button -> {
-                                    GreatScrollableTooltipsConfig config = ConfigScreen.this.config;
-                                    button.setMessage(Text.translatable(config.autoReset ? "great-scrollable-tooltips.ui.config.auto-reset.false" : "great-scrollable-tooltips.ui.config.auto-reset.true"));
-                                    config.autoReset = !config.autoReset;
-                                }
+                        Text.translatable(this.config.autoReset ? "great-scrollable-tooltips.ui.config.auto-reset.true" : "great-scrollable-tooltips.ui.config.auto-reset.false"),
+                        button -> {
+                            GreatScrollableTooltipsConfig config = ConfigScreen.this.config;
+                            config.autoReset = !config.autoReset;
+                            config.save();
+                            button.setMessage(Text.translatable(config.autoReset ? "great-scrollable-tooltips.ui.config.auto-reset.true" : "great-scrollable-tooltips.ui.config.auto-reset.false"));
+                        }
                 )
-                        .position(this.width / 2 - 100, this.height / 2 - 45)
+                        .tooltip(Tooltip.of(Text.translatable("great-scrollable-tooltips.ui.config.auto-reset.tooltip")))
+                        .position(this.width / 2 - 100, this.height / 2 - 23)
                         .size(200, 20)
                         .build()
         );
 
         this.addDrawableChild(
-                this.sensitivitySlider = new SliderWidget(
-                        this.width / 2 - 100, this.height / 2 - 20,
+                new SliderWidget(
+                        this.width / 2 - 100, this.height / 2 + 2,
                         200, 20,
                         Text.translatable("great-scrollable-tooltips.ui.config.sensitivity", this.config.sensitivity),
                         new BigDecimal(this.config.sensitivity)
@@ -81,50 +83,26 @@ public class ConfigScreen extends Screen {
 
                     @Override
                     protected void applyValue() {
+                        GreatScrollableTooltipsConfig config = ConfigScreen.this.config;
+                        config.sensitivity = BigDecimal.valueOf(this.value)
+                                .multiply(new BigDecimal(99))
+                                .add(BigDecimal.ONE)
+                                .setScale(0, RoundingMode.DOWN)
+                                .intValue();
+                        config.save();
                     }
                 }
         );
 
         this.addDrawableChild(
                 ButtonWidget.builder(
-                                Text.translatable("great-scrollable-tooltips.ui.config.reload"),
-                                button -> {
-                                    ConfigScreen instance = ConfigScreen.this;
-                                    instance.config.load();
-                                    MinecraftClient.getInstance().setScreen(new ConfigScreen(instance.parent, instance.config));
-                                }
-                )
-                        .position(this.width / 2 - 100, this.height / 2 + 5)
-                        .size(200, 20)
-                        .build()
-        );
-
-        this.addDrawableChild(
-                ButtonWidget.builder(
-                        Text.translatable("great-scrollable-tooltips.ui.config.save-and-exit"),
+                        Text.translatable("great-scrollable-tooltips.ui.config.done"),
                         button -> {
-                            ConfigScreen screen = ConfigScreen.this;
-                            GreatScrollableTooltipsConfig config = screen.config;
-                            config.sensitivity = BigDecimal.valueOf(((AccessorSliderWidget) screen.sensitivitySlider).getValue())
-                                    .multiply(new BigDecimal(99))
-                                    .add(BigDecimal.ONE)
-                                    .setScale(0, RoundingMode.DOWN)
-                                    .intValue();
-                            config.save();
-                            MinecraftClient.getInstance().setScreen(screen.parent);
+                            ConfigScreen instance = ConfigScreen.this;
+                            MinecraftClient.getInstance().setScreen(instance.parent);
                         }
                 )
-                        .position(this.width / 2 - 100, this.height / 2 + 30)
-                        .size(200, 20)
-                        .build()
-        );
-
-        this.addDrawableChild(
-                ButtonWidget.builder(
-                        Text.translatable("great-scrollable-tooltips.ui.config.discard-and-exit"),
-                        button -> MinecraftClient.getInstance().setScreen(ConfigScreen.this.parent)
-                )
-                        .position(this.width / 2 - 100, this.height / 2 + 55)
+                        .position(this.width / 2 - 100, this.height / 2 + 27)
                         .size(200, 20)
                         .build()
         );
