@@ -28,7 +28,7 @@ jobs:
           - 1.20-1.20.1-fabric
           - 1.20.2-24w13a-fabric
           - 24w14a-1.21.1-fabric
-          - 24w33a-fabric
+          - 24w33a-1.21.4-fabric
           - 1.8.9-1.10-forge
           - 1.10.2-1.11-forge
           - 1.11.2-1.12.2-forge
@@ -59,7 +59,7 @@ jobs:
             java-verion: 17
           - dir: 24w14a-1.21.1-fabric
             java-verion: 21
-          - dir: 24w33a-fabric
+          - dir: 24w33a-1.21.4-fabric
             java-verion: 21
           - dir: 1.8.9-1.10-forge
             java-verion: 8

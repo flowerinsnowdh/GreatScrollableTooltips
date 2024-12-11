@@ -21,7 +21,6 @@ public record ScrollingStatusListener(GreatScrollableTooltips main) implements R
     @Override
     public ActionResult preRenderTooltip(HandledScreen<?> screen, DrawContext context, int x, int y, Slot focusedSlot) {
         ScrollSession<ItemStack> session = this.main.getScrollSession();
-        session.setRendering(true);
         ItemStack itemStack = focusedSlot.getStack();
         if (itemStack != session.getLastItemStackRendered()) {
             session.setLastItemStackRendered(itemStack);
@@ -36,10 +35,9 @@ public record ScrollingStatusListener(GreatScrollableTooltips main) implements R
     @Override
     public ActionResult missRenderTooltip(HandledScreen<?> screen) {
         ScrollSession<ItemStack> session = this.main.getScrollSession();
-        session.setRendering(false);
         session.setLastItemStackRendered(null);
         if (this.main.getConfig().autoReset) {
-            session.resetScroll();;
+            session.resetScroll();
         }
         return ActionResult.PASS;
     }
@@ -48,7 +46,6 @@ public record ScrollingStatusListener(GreatScrollableTooltips main) implements R
     public ActionResult onScreenClose(Screen oldScreen) {
         ScrollSession<ItemStack> session = this.main.getScrollSession();
         session.setLastItemStackRendered(null);
-        session.setRendering(false);
         session.resetScroll();
         return ActionResult.PASS;
     }
