@@ -3,7 +3,6 @@
     "package": "cn.flowerinsnow.greatscrollabletooltips.mixin",
     "compatibilityLevel": "JAVA_21",
     "client": [
-        "AccessorSliderWidget",
         "MixinDrawContext",
         "MixinHandledScreen"
     ],
