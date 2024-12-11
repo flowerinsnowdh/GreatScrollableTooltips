@@ -57,9 +57,11 @@ public class MixinHandledScreen<T extends ScreenHandler> extends Screen {
         PreScreenKeyPressedEvent.EVENT.invoker().preScreenKeyPressed(this.THIS, keyCode, scanCode, modifiers);
     }
 
-    @Override
-    public boolean mouseScrolled(double mouseX, double mouseY, double horizontalAmount, double verticalAmount) {
+    @Inject(
+            method = "mouseScrolled",
+            at = @At("HEAD")
+    )
+    public void mouseScrolled(double mouseX, double mouseY, double horizontalAmount, double verticalAmount, CallbackInfoReturnable<Boolean> cir) {
         PreScreenMouseScrollEvent.EVENT.invoker().preScreenMouseScrolled(this.THIS, mouseX, mouseY, horizontalAmount, verticalAmount);
-        return super.mouseScrolled(mouseX, mouseY, horizontalAmount, verticalAmount);
     }
 }
