@@ -7,7 +7,9 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
+import net.minecraft.item.BundleItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.util.ActionResult;
 
 @Environment(EnvType.CLIENT)
@@ -20,6 +22,10 @@ public record MouseScrollListener(GreatScrollableTooltips main) implements PreSc
 
         ScrollSession<ItemStack> session = this.main.getScrollSession();
         if (!session.isRendering()) {
+            return ActionResult.PASS;
+        }
+
+        if (session.getLastItemStackRendered().isIn(ItemTags.BUNDLES)) {
             return ActionResult.PASS;
         }
 
