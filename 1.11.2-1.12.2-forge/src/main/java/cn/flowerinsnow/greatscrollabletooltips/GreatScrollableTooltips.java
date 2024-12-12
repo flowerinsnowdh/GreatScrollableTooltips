@@ -11,7 +11,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import cn.flowerinsnow.greatscrollabletooltips.config.Config;
 import cn.flowerinsnow.greatscrollabletooltips.listener.CursorKeyListener;
-import cn.flowerinsnow.greatscrollabletooltips.listener.EventTrigger;
+import cn.flowerinsnow.greatscrollabletooltips.listener.EventTriggerListener;
 import cn.flowerinsnow.greatscrollabletooltips.listener.GreatScrollableTooltipsListener;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -56,7 +56,7 @@ public class GreatScrollableTooltips {
     @EventHandler
     public void init(FMLInitializationEvent event) {
         MinecraftForge.EVENT_BUS.register(new GreatScrollableTooltipsListener());
-        MinecraftForge.EVENT_BUS.register(new EventTrigger());
+        MinecraftForge.EVENT_BUS.register(new EventTriggerListener());
         MinecraftForge.EVENT_BUS.register(new CursorKeyListener());
 
         ClientRegistry.registerKeyBinding(KEY_BINDING_SCROLL_UP);

@@ -4,12 +4,12 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import cn.flowerinsnow.greatscrollabletooltips.GreatScrollableTooltips;
-import cn.flowerinsnow.greatscrollabletooltips.event.GuiContainerKeyTypedEvent;
+import cn.flowerinsnow.greatscrollabletooltips.event.PreScreenKeyPressedEvent;
 
 @SideOnly(Side.CLIENT)
 public class CursorKeyListener {
     @SubscribeEvent
-    public void preGuiContainerKeyTyped(GuiContainerKeyTypedEvent.Pre event) {
+    public void preGuiContainerKeyTyped(PreScreenKeyPressedEvent.Pre event) {
         final GreatScrollableTooltips instance = GreatScrollableTooltips.getInstance();
 
         if (GreatScrollableTooltips.KEY_BINDING_SCROLL_UP.getKeyCode() == event.keyCode) {
