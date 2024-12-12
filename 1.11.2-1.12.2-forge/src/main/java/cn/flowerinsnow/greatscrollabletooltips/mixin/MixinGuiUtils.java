@@ -1,4 +1,4 @@
-package online.flowerinsnow.greatscrollabletooltips.mixin;
+package cn.flowerinsnow.greatscrollabletooltips.mixin;
 
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.item.ItemStack;
@@ -6,8 +6,8 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.config.GuiUtils;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import online.flowerinsnow.greatscrollabletooltips.GreatScrollableTooltips;
-import online.flowerinsnow.greatscrollabletooltips.event.DrawHoveringTextEvent;
+import cn.flowerinsnow.greatscrollabletooltips.GreatScrollableTooltips;
+import cn.flowerinsnow.greatscrollabletooltips.event.DrawHoveringTextEvent;
 import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;

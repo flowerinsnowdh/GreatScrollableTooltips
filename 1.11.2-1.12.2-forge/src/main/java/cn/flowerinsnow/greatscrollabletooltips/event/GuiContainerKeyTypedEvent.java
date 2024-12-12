@@ -1,4 +1,4 @@
-package online.flowerinsnow.greatscrollabletooltips.event;
+package cn.flowerinsnow.greatscrollabletooltips.event;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraftforge.fml.common.eventhandler.Cancelable;

@@ -1,10 +1,10 @@
-package online.flowerinsnow.greatscrollabletooltips.mixin;
+package cn.flowerinsnow.greatscrollabletooltips.mixin;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import online.flowerinsnow.greatscrollabletooltips.event.GuiContainerKeyTypedEvent;
+import cn.flowerinsnow.greatscrollabletooltips.event.GuiContainerKeyTypedEvent;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;

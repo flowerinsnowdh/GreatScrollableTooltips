@@ -1,14 +1,14 @@
-package online.flowerinsnow.greatscrollabletooltips.config;
+package cn.flowerinsnow.greatscrollabletooltips.config;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.crash.CrashReport;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import online.flowerinsnow.fnml4j.api.node.ObjectNode;
-import online.flowerinsnow.fnml4j.api.node.StringNode;
-import online.flowerinsnow.fnml4j.api.parser.present.FNML4JPresentParser;
-import online.flowerinsnow.fnml4j.core.FNML4J;
-import online.flowerinsnow.greatscrollabletooltips.GreatScrollableTooltips;
+import cn.flowerinsnow.fnml4j.api.node.ObjectNode;
+import cn.flowerinsnow.fnml4j.api.node.StringNode;
+import cn.flowerinsnow.fnml4j.api.parser.present.FNML4JPresentParser;
+import cn.flowerinsnow.fnml4j.core.FNML4J;
+import cn.flowerinsnow.greatscrollabletooltips.GreatScrollableTooltips;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;

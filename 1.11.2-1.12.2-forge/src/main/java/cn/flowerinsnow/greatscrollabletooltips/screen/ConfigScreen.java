@@ -1,4 +1,4 @@
-package online.flowerinsnow.greatscrollabletooltips.screen;
+package cn.flowerinsnow.greatscrollabletooltips.screen;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
@@ -7,7 +7,7 @@ import net.minecraft.client.resources.I18n;
 import net.minecraftforge.fml.client.config.GuiSlider;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import online.flowerinsnow.greatscrollabletooltips.config.Config;
+import cn.flowerinsnow.greatscrollabletooltips.config.Config;
 
 @SideOnly(Side.CLIENT)
 public class ConfigScreen extends GuiScreen {

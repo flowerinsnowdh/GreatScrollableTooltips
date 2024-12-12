@@ -1,4 +1,4 @@
-package online.flowerinsnow.greatscrollabletooltips.listener;
+package cn.flowerinsnow.greatscrollabletooltips.listener;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
@@ -7,7 +7,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import online.flowerinsnow.greatscrollabletooltips.event.ScreenCloseEvent;
+import cn.flowerinsnow.greatscrollabletooltips.event.ScreenCloseEvent;
 
 @SideOnly(Side.CLIENT)
 public class EventTrigger {

@@ -1,9 +1,9 @@
-package online.flowerinsnow.greatscrollabletooltips.screen;
+package cn.flowerinsnow.greatscrollabletooltips.screen;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.fml.client.IModGuiFactory;
-import online.flowerinsnow.greatscrollabletooltips.GreatScrollableTooltips;
+import cn.flowerinsnow.greatscrollabletooltips.GreatScrollableTooltips;
 
 import java.util.Set;
 

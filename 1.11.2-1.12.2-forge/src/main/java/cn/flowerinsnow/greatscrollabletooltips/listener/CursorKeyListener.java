@@ -1,10 +1,10 @@
-package online.flowerinsnow.greatscrollabletooltips.listener;
+package cn.flowerinsnow.greatscrollabletooltips.listener;
 
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import online.flowerinsnow.greatscrollabletooltips.GreatScrollableTooltips;
-import online.flowerinsnow.greatscrollabletooltips.event.GuiContainerKeyTypedEvent;
+import cn.flowerinsnow.greatscrollabletooltips.GreatScrollableTooltips;
+import cn.flowerinsnow.greatscrollabletooltips.event.GuiContainerKeyTypedEvent;
 
 @SideOnly(Side.CLIENT)
 public class CursorKeyListener {

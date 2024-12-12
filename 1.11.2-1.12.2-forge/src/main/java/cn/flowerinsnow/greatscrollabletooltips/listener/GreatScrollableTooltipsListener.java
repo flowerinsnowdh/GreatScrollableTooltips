@@ -1,4 +1,4 @@
-package online.flowerinsnow.greatscrollabletooltips.listener;
+package cn.flowerinsnow.greatscrollabletooltips.listener;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
@@ -6,9 +6,9 @@ import net.minecraft.client.gui.inventory.GuiContainerCreative;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import online.flowerinsnow.greatscrollabletooltips.GreatScrollableTooltips;
-import online.flowerinsnow.greatscrollabletooltips.event.DrawHoveringTextEvent;
-import online.flowerinsnow.greatscrollabletooltips.event.ScreenCloseEvent;
+import cn.flowerinsnow.greatscrollabletooltips.GreatScrollableTooltips;
+import cn.flowerinsnow.greatscrollabletooltips.event.DrawHoveringTextEvent;
+import cn.flowerinsnow.greatscrollabletooltips.event.ScreenCloseEvent;
 import org.lwjgl.input.Mouse;
 
 @SideOnly(Side.CLIENT)

@@ -1,4 +1,4 @@
-package online.flowerinsnow.greatscrollabletooltips;
+package cn.flowerinsnow.greatscrollabletooltips;
 
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.common.MinecraftForge;
@@ -9,10 +9,10 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import online.flowerinsnow.greatscrollabletooltips.config.Config;
-import online.flowerinsnow.greatscrollabletooltips.listener.CursorKeyListener;
-import online.flowerinsnow.greatscrollabletooltips.listener.EventTrigger;
-import online.flowerinsnow.greatscrollabletooltips.listener.GreatScrollableTooltipsListener;
+import cn.flowerinsnow.greatscrollabletooltips.config.Config;
+import cn.flowerinsnow.greatscrollabletooltips.listener.CursorKeyListener;
+import cn.flowerinsnow.greatscrollabletooltips.listener.EventTrigger;
+import cn.flowerinsnow.greatscrollabletooltips.listener.GreatScrollableTooltipsListener;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.input.Keyboard;
@@ -24,7 +24,7 @@ import java.io.File;
         name = GreatScrollableTooltips.NAME,
         version = GreatScrollableTooltips.VERSION,
         clientSideOnly = true,
-        guiFactory = "online.flowerinsnow.greatscrollabletooltips.screen.GreatScrollableTooltipsGuiFactory"
+        guiFactory = "cn.flowerinsnow.greatscrollabletooltips.screen.GreatScrollableTooltipsGuiFactory"
 )
 @SideOnly(Side.CLIENT)
 public class GreatScrollableTooltips {
