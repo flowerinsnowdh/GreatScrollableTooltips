@@ -36,7 +36,7 @@ import java.nio.file.Path;
 public class GreatScrollableTooltips {
     public static final String MODID = "great-scrollable-tooltips";
     public static final String NAME = "Great Scrollable Tooltips";
-    public static final String VERSION = "4.3.0";
+    public static final String VERSION = "4.3.0+forge";
 
     private static GreatScrollableTooltips instance;
 

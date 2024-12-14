@@ -15,10 +15,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up JDK 21
+      - name: Set up JDK 8
         uses: actions/setup-java@v4
         with:
-          java-version: 21
+          java-version: 8
           distribution: temurin
 
       - name: Setup Gradle
@@ -26,8 +26,9 @@ jobs:
 
       - name: Build with Gradle Wrapper
         run: |
-          cd 24w33a-1.21.4-fabric/
+          cd 1.12.2-forge/
           ./gradlew build
+          sha256sum build/libs/*
         env:
           GITHUB_USERNAME: ${{ secrets.GH_PKG_USERNAME }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -35,4 +36,4 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
-          files: 24w33a-1.21.4-fabric/build/libs/*.jar
+          files: 1.12.2-forge/build/libs/*.jar
