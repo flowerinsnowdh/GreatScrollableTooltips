@@ -31,7 +31,7 @@ jobs:
           - 24w33a-1.21.4-fabric
           - 1.8.9-1.10-forge
           - 1.10.2-1.11-forge
-          - 1.11.2-1.12.2-forge
+          - 1.12.2-forge
           - 1.18.2-forge
           - 1.19.2-forge
           - 1.19.4-forge
@@ -66,7 +66,7 @@ jobs:
             decompile: true
           - dir: 1.10.2-1.11-forge
             java-verion: 8
-          - dir: 1.11.2-1.12.2-forge
+          - dir: 1.12.2-forge
             java-verion: 8
           - dir: 1.18.2-forge
             java-verion: 17
