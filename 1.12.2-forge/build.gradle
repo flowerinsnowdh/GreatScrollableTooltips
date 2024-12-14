@@ -19,9 +19,9 @@ buildscript() {
 apply(plugin: 'net.minecraftforge.gradle')
 apply(plugin: 'com.github.johnrengelman.shadow')
 apply(plugin: 'org.spongepowered.mixin')
-        
+
 version = '4.3.0'
-group = 'online.flowerinsnow.greatscrollabletooltips'
+group = 'cn.flowerinsnow.greatscrollabletooltips'
 archivesBaseName = 'great-scrollable-tooltips'
 
 minecraft() {
@@ -76,17 +76,22 @@ repositories() {
     }
 }
 
+configurations() {
+    shade
+    compile.extendsFrom(shade)
+}
+
 dependencies() {
     minecraft('net.minecraftforge:forge:1.12.2-14.23.5.2860')
 
-    compile("cn.flowerinsnow.greatscrollabletooltips:common:${version_common_module}") {
+    shade("cn.flowerinsnow.greatscrollabletooltips:common:${version_common_module}") {
         exclude(module: 'core')
         exclude(module: 'toml')
     }
 
-    compile("com.electronwill.night-config:toml:${version_night_config}")
+    shade("com.electronwill.night-config:toml:${version_night_config}")
 
-    compile("org.spongepowered:mixin:${version_mixin}") {
+    shade("org.spongepowered:mixin:${version_mixin}") {
         exclude(module: 'guava')
         exclude(module: 'commons-io')
         exclude(module: 'gson')
@@ -100,21 +105,6 @@ processResources() {
     }
     filesMatching('mcmod.info') {
         expand(props)
-    }
-}
-
-// Example for how to get properties into the manifest for reading by the runtime..
-jar() {
-    manifest() {
-        attributes([
-            "Specification-Title": "Great Scrollable Tooltips",
-            "Specification-Vendor": "",
-            "Specification-Version": "1", // We are version 1 of ourselves
-            "Implementation-Title": project.name,
-            "Implementation-Version": "${version}",
-            "Implementation-Vendor" :"",
-            "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
-        ])
     }
 }
 
@@ -133,18 +123,24 @@ tasks.withType(JavaCompile).configureEach {
 shadowJar() {
     manifest() {
         attributes([
-                'TweakClass': 'online.flowerinsnow.greatscrollabletooltips.tweaker.GreatScrollableTooltipsTweaker'
+                'TweakClass': 'cn.flowerinsnow.greatscrollabletooltips.tweaker.GreatScrollableTooltipsTweaker',
+                "Specification-Title": "Great Scrollable Tooltips",
+                "Specification-Vendor": "",
+                "Specification-Version": "1", // We are version 1 of ourselves
+                "Implementation-Title": project.name,
+                "Implementation-Version": "${version}",
+                "Implementation-Vendor" :"",
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
     }
 
-    dependencies() {
-        include(dependency("cn.flowerinsnow.greatscrollabletooltips:common:${version_common_module}"))
-        include(dependency("com.electronwill.night-config:core:${version_night_config}"))
-        include(dependency("com.electronwill.night-config:toml:${version_night_config}"))
-        include(dependency("org.spongepowered:mixin:${version_mixin}"))
-    }
+    configurations = [project.configurations.shade]
 
     classifier = ''
+
+    from('../LICENSE')
+    exclude('LICENSE.txt')
+    from('../NOTICE')
 }
 
 reobf() {

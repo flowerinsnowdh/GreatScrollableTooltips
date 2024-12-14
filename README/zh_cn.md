@@ -1,6 +1,11 @@
 # Great Scrollable Tooltips
 允许滚动物品栏中的物品工具提示（Lore）。
 
+# 链接
+- [在 Modrinth 上查看](https://modrinth.com/mod/great-scrollable-tooltips)
+- [在 CurseForge 上查看](https://www.curseforge.com/minecraft/mc-mods/great-scrollable-tooltips)
+- [在 MC百科 上查看](https://www.mcmod.cn/class/14734.html)
+
 # Great 前缀是什么意思？
 仅仅是为了与其他已经叫作 Scrollable Tooltips 区分，避免 ModID 冲突。
 
@@ -26,7 +31,7 @@
 * Forge 上没有任何需要的前置，与 [Optifine](https://optifine.net/) 不兼容
 
 # Versions
-**由于本人时间与精力有限，如果需要更多支持的版本、需要兼容的Mod、需要修复的问题，请开issue来告诉我，否则更新随缘**
+**由于本人时间与精力有限，如果需要更多支持的版本、需要兼容的 Mod、需要修复的问题，请开 issue 来告诉我，否则更新随缘**
 
 ## Fabric
 |          Mod 版本           |         Minecraft 版本         | [#38](https://github.com/flowerinsnowdh/GreatScrollableTooltips/issues/38) | [LegendaryTooltips](https://github.com/AHilyard/LegendaryTooltips) | [#72](https://github.com/flowerinsnowdh/GreatScrollableTooltips/issues/72) | [#75](https://github.com/flowerinsnowdh/GreatScrollableTooltips/issues/75) | [AppleSkin](https://github.com/squeek502/AppleSkin) |
@@ -45,62 +50,19 @@
 |            16.x             |         24w33a-1.20.4          |                                     ✅                                      |                                 -                                  |                                     ✅                                      |                                     ✅                                      |                          ✅                          |
 
 ## Forge
-| Mod 版本 | Minecraft 版本 | [#38](https://github.com/flowerinsnowdh/GreatScrollableTooltips/issues/38) | [LegendaryTooltips](https://github.com/AHilyard/LegendaryTooltips) | [#72](https://github.com/flowerinsnowdh/GreatScrollableTooltips/issues/72) | [#75](https://github.com/flowerinsnowdh/GreatScrollableTooltips/issues/75) | [#81](https://github.com/flowerinsnowdh/GreatScrollableTooltips/issues/81) | [AppleSkin](https://github.com/squeek502/AppleSkin) | [Obscure Tooltips](https://www.curseforge.com/minecraft/mc-mods/obscure-tooltips) |
-| :------: | :------------: | :------------------------------------------------------------------------: | :----------------------------------------------------------------: | :------------------------------------------------------------------------: | :------------------------------------------------------------------------: | :------------------------------------------------------------------------: | :-------------------------------------------------: | :-------------------------------------------------------------------------------: |
-|   1.x    |   1.8.9-1.10   |                                     -                                      |                                 -                                  |                                     ✅                                      |                                     -                                      |                                     -                                      |                          -                          |                                         -                                         |
-|   3.x    |   1.10-1.11    |                                     ❌                                      |                                 -                                  |                                     ❌                                      |                                     ❌                                      |                                     ❌                                      |                          ❌                          |                                         -                                         |
-|   4.x    | 1.11.2-1.12.2  |                                     ❌                                      |                                 ❌                                  |                                     ❌                                      |                                     ❌                                      |                                     ❌                                      |                          ❌                          |                                         -                                         |
-|   8.x    |     1.18.2     |                                     ✅                                      |                                 ❌                                  |                                     ✅                                      |                                     ❌                                      |                                     ❌                                      |                          ❌                          |                                         ❌                                         |
-|   11.x   |     1.19.2     |                                     ✅                                      |                                 ❌                                  |                                     ❌                                      |                                     ❌                                      |                                     ❌                                      |                          ❌                          |                                         ❌                                         |
-|   13.x   |     1.19.4     |                                     ✅                                      |                                 ❌                                  |                                     ❌                                      |                                     ❌                                      |                                     ❌                                      |                          ❌                          |                                         ❌                                         |
-|   15.x   |     1.20.1     |                                     ✅                                      |                                 ✅                                  |                                     ✅                                      |                                     ✅                                      |                                     ✅                                      |                          ✅                          |                                         ✅                                         |
+| Mod 版本 | Minecraft 版本 | [#38](https://github.com/flowerinsnowdh/GreatScrollableTooltips/issues/38) | [LegendaryTooltips](https://github.com/AHilyard/LegendaryTooltips) | [#72](https://github.com/flowerinsnowdh/GreatScrollableTooltips/issues/72) | [#75](https://github.com/flowerinsnowdh/GreatScrollableTooltips/issues/75) | [Apotheosis](https://github.com/Shadows-of-Fire/Apotheosis) | [AppleSkin](https://github.com/squeek502/AppleSkin) | [Obscure Tooltips](https://www.curseforge.com/minecraft/mc-mods/obscure-tooltips) |
+| :------: | :------------: | :------------------------------------------------------------------------: | :----------------------------------------------------------------: | :------------------------------------------------------------------------: | :------------------------------------------------------------------------: | :---------------------------------------------------------: | :-------------------------------------------------: | :-------------------------------------------------------------------------------: |
+|   1.x    |   1.8.9-1.10   |                                     -                                      |                                 -                                  |                                     ✅                                      |                                     -                                      |                              -                              |                          -                          |                                         -                                         |
+|   3.x    |   1.10-1.11    |                                     ❌                                      |                                 -                                  |                                     ❌                                      |                                     ❌                                      |                              ❌                              |                          ❌                          |                                         -                                         |
+|   4.x    |     1.12.2     |                                     ✅                                      |                                 ✅                                  |                                     ✅                                      |                                     -                                      |                              ❓                              |                          ✅                          |                                         -                                         |
+|   8.x    |     1.18.2     |                                     ✅                                      |                                 ❌                                  |                                     ✅                                      |                                     ❌                                      |                              ❌                              |                          ❌                          |                                         ❌                                         |
+|   11.x   |     1.19.2     |                                     ✅                                      |                                 ❌                                  |                                     ❌                                      |                                     ❌                                      |                              ❌                              |                          ❌                          |                                         ❌                                         |
+|   13.x   |     1.19.4     |                                     ✅                                      |                                 ❌                                  |                                     ❌                                      |                                     ❌                                      |                              ❌                              |                          ❌                          |                                         ❌                                         |
+|   15.x   |     1.20.1     |                                     ✅                                      |                                 ✅                                  |                                     ✅                                      |                                     ✅                                      |                              ✅                              |                          ✅                          |                                         ✅                                         |
 
-# 签名验证
-部分版本有数字签名，建议您在非本仓库下载时进行签名验证，验证方法如下：
+# 鸣谢
+[<img src="README/CREDITS/jetbrains.png" alt="jetbrains.png"/>](https://www.jetbrains.com)
 
-```
-jarsigner -verify -verbose -certs great-scrollable-tooltips-<版本>.jar
-```
+本项目的开发得到了 [JetBrains](https://www.jetbrains.com/) 的支持，他们慷慨地为开源项目提供了免费的 IDE 许可证。他们的工具大大提高了我的工作效率和开发体验。
 
-出现下方内容表示验证成功：
-
-```
-sm      2041 Thu Jan 01 08:00:00 CST 1970 org/spongepowered/asm/lib/util/package.html
-
-      >>> 签名者
-      X.509, CN=flowerinsnow.online
-      Signature algorithm: SHA256withRSA, 256 位密钥
-      [证书将在2024/5/31 下午6:49到期]
-      [ExtendedKeyUsage 扩展不支持代码签名]
-      X.509, CN=GTS CA 1P5, O=Google Trust Services LLC, C=US
-      Signature algorithm: SHA256withRSA, 2048 位密钥
-      [证书的有效期为2020/8/13 上午8:00至2027/9/30 上午8:00]
-      X.509, CN=GTS Root R1, O=Google Trust Services LLC, C=US
-      Signature algorithm: SHA256withRSA, 4096 位密钥
-      [证书的有效期为2020/6/19 上午8:00至2028/1/28 上午8:00]
-
-
-  s = 已验证签名
-  m = 在清单中列出条目
-  k = 在密钥库中至少找到了一个证书
-
-- 由 "CN=flowerinsnow.online" 签名
-    摘要算法: SHA-256
-    签名算法: SHA256withECDSA, 256 位密钥
-
-jar 已验证。
-
-警告:
-此 jar 包含由于签名者证书的 ExtendedKeyUsage 扩展而无法进行代码签名的条目。
-此 jar 包含签名者证书将在六个月内过期的条目。
-此 jar 包含的签名没有时间戳。如果没有时间戳, 则在其中任一签名者证书到期 (最早为 2024-05-31) 之后, 用户可能无法验证此 jar。
-```
-
-**警告**：请验证签名者，签名者一定是 CN=flowerinsnow.online。
-
-**警告**：出现下面这些内容表示验证失败，如果是从非本仓库下载的文件，请勿使用！
-
-1. 当签名者 CN 不为 `flowerinsnow.online` 时，表示签名者不是当前作者。
-2. 当出现类似 `jarsigner: java.lang.SecurityException: SHA-256 digest error for online/flowerinsnow/greatscrollabletooltips/GreatScrollableTooltips.class` 等字样时，表示 jar 文件被修改过。
-3. 当出现类似 `此 jar 包含其证书链无效的条目。原因: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target` 或 `此 jar 包含其签名者证书为自签名证书的条目。` 等字样时，表示该副本是由未知签名者签发的。
-4. 当出现类似 `jar 未签名。` 等字样时，表示该副本未被签名。
+我衷心感谢 [JetBrains](https://www.jetbrains.com/) [对开源软件的支持](https://www.jetbrains.com/community/opensource/)。如果您正在寻找功能强大的开发工具，推荐您查看 [JetBrains 的产品](https://www.jetbrains.com/products/)。
