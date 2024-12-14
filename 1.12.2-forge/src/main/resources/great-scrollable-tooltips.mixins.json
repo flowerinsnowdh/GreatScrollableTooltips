@@ -1,0 +1,9 @@
+{
+    "compatibilityLevel": "JAVA_8",
+    "refmap": "great-scrollable-tooltips-refmap.json",
+    "package": "cn.flowerinsnow.greatscrollabletooltips.mixin",
+    "client": [
+        "MixinHandledScreen",
+        "MixinGuiUtils"
+    ]
+}
