@@ -34,4 +34,4 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
-          files: 1.12.2-forge/build/libs/*.jar
+          files: 1.19.2-forge/build/libs/*.jar
