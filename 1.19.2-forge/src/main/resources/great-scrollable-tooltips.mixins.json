@@ -2,13 +2,11 @@
     "required": true,
     "minVersion": "0.8",
     "refmap": "mixins.great-scrollable-tooltips.refmap.json",
-    "package": "online.flowerinsnow.greatscrollabletooltips.mixin",
+    "package": "cn.flowerinsnow.greatscrollabletooltips.mixin",
     "compatibilityLevel": "JAVA_17",
     "client": [
-        "AccessorSliderWidget",
-        "MixinScreen",
         "MixinHandledScreen",
-        "MixinInventoryScreen"
+        "MixinScreen"
     ],
     "injectors": {
         "defaultRequire": 1

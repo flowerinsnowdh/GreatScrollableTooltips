@@ -15,22 +15,20 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up JDK 8
+      - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
-          java-version: 8
+          java-version: 17
           distribution: temurin
-
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v3
 
       - name: Build with Gradle Wrapper
         run: |
-          cd 1.12.2-forge/
+          cd 1.19.2-forge/
+          chmod +x gradlew
           ./gradlew build
           sha256sum build/libs/*
         env:
-          GITHUB_USERNAME: ${{ secrets.GH_PKG_USERNAME }}
+          GITHUB_USERNAME: ${{ github.repository_owner }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Release

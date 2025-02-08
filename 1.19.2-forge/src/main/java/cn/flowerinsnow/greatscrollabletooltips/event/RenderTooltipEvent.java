@@ -1,8 +1,9 @@
-package online.flowerinsnow.greatscrollabletooltips.event;
+package cn.flowerinsnow.greatscrollabletooltips.event;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.Slot;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.eventbus.api.Event;
@@ -10,10 +11,10 @@ import net.minecraftforge.eventbus.api.Event;
 import java.util.Objects;
 
 @OnlyIn(Dist.CLIENT)
-public class RenderMouseoverTooltipEvent extends Event {
+public class RenderTooltipEvent extends Event {
     protected final AbstractContainerScreen<?> screen;
 
-    protected RenderMouseoverTooltipEvent(AbstractContainerScreen<?> screen) {
+    protected RenderTooltipEvent(AbstractContainerScreen<?> screen) {
         this.screen = screen;
     }
 
@@ -25,7 +26,7 @@ public class RenderMouseoverTooltipEvent extends Event {
     public boolean equals(Object object) {
         if (this == object) return true;
         if (object == null || getClass() != object.getClass()) return false;
-        RenderMouseoverTooltipEvent that = (RenderMouseoverTooltipEvent) object;
+        RenderTooltipEvent that = (RenderTooltipEvent) object;
         return Objects.equals(this.screen, that.screen);
     }
 
@@ -38,39 +39,45 @@ public class RenderMouseoverTooltipEvent extends Event {
 
     @Override
     public String toString() {
-        return "RenderMouseoverTooltipEvent{" +
+        return RenderTooltipEvent.class.getSimpleName() + "{" +
                 "screen=" + screen +
                 '}';
     }
 
-    public static class Post extends RenderMouseoverTooltipEvent {
-        private final PoseStack matrices;
-        private final ItemStack stack;
+    public static class Pre extends RenderTooltipEvent {
+        private final PoseStack poseStack;
         private final int x;
         private final int y;
+        private final AbstractContainerMenu menu;
+        private final Slot slot;
 
-        public Post(AbstractContainerScreen<?> screen, PoseStack matrices, ItemStack stack, int x, int y) {
+        public Pre(AbstractContainerScreen<?> screen, PoseStack poseStack, int x, int y, AbstractContainerMenu menu, Slot slot) {
             super(screen);
-            this.matrices = matrices;
-            this.stack = stack;
+            this.poseStack = poseStack;
             this.x = x;
             this.y = y;
+            this.menu = menu;
+            this.slot = slot;
         }
 
-        public PoseStack getMatrices() {
-            return matrices;
-        }
-
-        public ItemStack getStack() {
-            return stack;
+        public PoseStack getPoseStack() {
+            return this.poseStack;
         }
 
         public int getX() {
-            return x;
+            return this.x;
         }
 
         public int getY() {
-            return y;
+            return this.y;
+        }
+
+        public AbstractContainerMenu getMenu() {
+            return menu;
+        }
+
+        public Slot getSlot() {
+            return this.slot;
         }
 
         @Override
@@ -78,34 +85,36 @@ public class RenderMouseoverTooltipEvent extends Event {
             if (this == object) return true;
             if (object == null || getClass() != object.getClass()) return false;
             if (!super.equals(object)) return false;
-            Post that = (Post) object;
-            return this.x == that.x && this.y == that.y && Objects.equals(this.matrices, that.matrices) && Objects.equals(this.stack, that.stack);
+            Pre that = (Pre) object;
+            return this.x == that.x && this.y == that.y && Objects.equals(this.poseStack, that.poseStack) && Objects.equals(this.menu, that.menu) && Objects.equals(this.slot, that.slot);
         }
 
         @Override
         public int hashCode() {
             int result = 17;
             result = 31 * result + super.hashCode();
-            result = 31 * result + (this.matrices != null ? this.matrices.hashCode() : 0);
-            result = 31 * result + (this.stack != null ? this.stack.hashCode() : 0);
+            result = 31 * result + (this.poseStack != null ? this.poseStack.hashCode() : 0);
             result = 31 * result + this.x;
             result = 31 * result + this.y;
+            result = 31 * result + (this.menu != null ? this.menu.hashCode() : 0);
+            result = 31 * result + (this.slot != null ? this.slot.hashCode() : 0);
             return result;
         }
 
         @Override
         public String toString() {
-            return "Post{" +
+            return Pre.class.getSimpleName() + "{" +
                     "super=" + super.toString() +
-                    ", matrices=" + matrices +
-                    ", stack=" + stack +
-                    ", x=" + x +
-                    ", y=" + y +
+                    ", poseStack=" + this.poseStack +
+                    ", x=" + this.x +
+                    ", y=" + this.y +
+                    ", menu=" + this.menu +
+                    ", slot=" + this.slot +
                     '}';
         }
     }
 
-    public static class Miss extends RenderMouseoverTooltipEvent {
+    public static class Miss extends RenderTooltipEvent {
         public Miss(AbstractContainerScreen<?> screen) {
             super(screen);
         }
@@ -124,7 +133,7 @@ public class RenderMouseoverTooltipEvent extends Event {
 
         @Override
         public String toString() {
-            return "Miss{" +
+            return Miss.class.getSimpleName() + "{" +
                     "super=" + super.toString() +
                     '}';
         }

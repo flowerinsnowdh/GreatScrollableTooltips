@@ -98,6 +98,6 @@ jobs:
           fi
           ./gradlew build
         env:
-          GITHUB_USERNAME: ${{ secrets.GH_PKG_USERNAME }}
+          GITHUB_USERNAME: ${{ github.repository_owner }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DECOMPILE: ${{ matrix.decompile }}
