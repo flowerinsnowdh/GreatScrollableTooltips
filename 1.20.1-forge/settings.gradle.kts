@@ -1,6 +1,6 @@
 pluginManagement {
     repositories {
-        maven(url = "https://repo.nju.edu.cn/maven/")
+        gradlePluginPortal()
         maven(url = "https://maven.minecraftforge.net/")
         maven(url = "https://repo.spongepowered.org/repository/maven-public/")
     }
