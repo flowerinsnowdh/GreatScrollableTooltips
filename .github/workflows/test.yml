@@ -80,24 +80,24 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up JDK ${{ matrix.java-verion }}
+      - name: Set up JDK
         uses: actions/setup-java@v4
         with:
           java-version: ${{ matrix.java-verion }}
           distribution: temurin
 
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v3
+      - name: Grant execute permission to gradlew
+        run: chmod +x gradlew
+        working-directory: ${{ matrix.dir }}/
 
-      - name: Build with Gradle Wrapper
-        run: |
-          cd ${{ matrix.dir }}/
-          chmod +x gradlew
-          if [ -n "$DECOMPILE" ]; then
-              ./gradlew setupDecompWorkspace
-          fi
-          ./gradlew build
+      - name: Setup decompile workspace
+        run: ./gradlew setupDecompWorkspace
+        if: matrix.decompile
+        working-directory: ${{ matrix.dir }}/
+
+      - name: Build
+        run: ./gradlew build
         env:
           GITHUB_USERNAME: ${{ github.repository_owner }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          DECOMPILE: ${{ matrix.decompile }}
+        working-directory: ${{ matrix.dir }}/
