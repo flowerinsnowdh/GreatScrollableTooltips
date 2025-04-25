@@ -7,6 +7,7 @@ import net.minecraftforge.client.ConfigScreenHandler;
 import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -31,10 +32,12 @@ public class GreatScrollableTooltips {
 
     private ScrollSession<ItemStack> scrollSession;
 
-    private final FMLJavaModLoadingContext context;
+    public GreatScrollableTooltips() {
+        //noinspection removal : for old forge versions
+        this(FMLJavaModLoadingContext.get());
+    }
 
     public GreatScrollableTooltips(FMLJavaModLoadingContext context) {
-        this.context = context;
         IEventBus modEventBus = context.getModEventBus();
         modEventBus.addListener(this::onClientSetup);
     }
@@ -67,7 +70,8 @@ public class GreatScrollableTooltips {
         this.config.saveDefaultConfig();
         this.config.load();
 
-        this.context.registerExtensionPoint(ConfigScreenHandler.ConfigScreenFactory.class, () ->
+        //noinspection removal : for old forge versions
+        ModLoadingContext.get().registerExtensionPoint(ConfigScreenHandler.ConfigScreenFactory.class, () ->
                 new ConfigScreenHandler.ConfigScreenFactory((client, parent) -> new ConfigScreen(parent, GreatScrollableTooltips.this.config))
         );
     }

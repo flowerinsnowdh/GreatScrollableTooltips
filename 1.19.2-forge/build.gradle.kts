@@ -2,7 +2,6 @@ import java.text.SimpleDateFormat
 import java.util.Date
 
 plugins {
-    id("eclipse")
     id("idea")
     id("maven-publish")
     id("net.minecraftforge.gradle") version "[6.0,6.2)"
