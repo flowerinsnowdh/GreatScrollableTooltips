@@ -3,7 +3,7 @@ name: "Release"
 on:
   push:
     tags:
-      - "v*"
+      - "*"
 
 jobs:
   release:
@@ -11,23 +11,20 @@ jobs:
     runs-on: "ubuntu-latest"
     permissions:
       contents: write
+    defaults:
+      run:
+        working-directory: 1.20.1-forge/
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up JDK 17
+      - name: Set up JDK
         uses: actions/setup-java@v4
         with:
           java-version: 17
           distribution: temurin
 
-      - name: Change directory
-        run: cd 1.20.1-forge/
-
-      - name: Add execute permission to gradlew
-        run: chmod +x gradlew
-
-      - name: Add execute permission to gradlew
+      - name: Grant execute permission to gradlew
         run: chmod +x gradlew
 
       - name: Build
@@ -42,4 +39,4 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
-          files: 1.20.1-forge/build/libs/*.jar
+          files: build/libs/*
