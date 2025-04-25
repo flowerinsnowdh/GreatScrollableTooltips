@@ -39,8 +39,8 @@ public class RenderTooltipEvent extends Event {
 
     @Override
     public String toString() {
-        return "RenderMouseoverTooltipEvent{" +
-                "screen=" + screen +
+        return RenderTooltipEvent.class.getSimpleName() + "{" +
+                "screen=" + this.screen +
                 '}';
     }
 
@@ -103,7 +103,7 @@ public class RenderTooltipEvent extends Event {
 
         @Override
         public String toString() {
-            return "Post{" +
+            return Pre.class.getSimpleName() + "{" +
                     "super=" + super.toString() +
                     ", graphics=" + this.graphics +
                     ", x=" + this.x +
@@ -133,7 +133,7 @@ public class RenderTooltipEvent extends Event {
 
         @Override
         public String toString() {
-            return "Miss{" +
+            return Miss.class.getSimpleName() + "{" +
                     "super=" + super.toString() +
                     '}';
         }

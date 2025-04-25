@@ -26,10 +26,11 @@ public record MouseScrollListener(GreatScrollableTooltips main) {
             return;
         }
 
+        int amount = Double.compare(event.getAmount(), 0.0);
         if (!Screen.hasShiftDown()) {
-            session.addVertical((int) event.getAmount());
+            session.addVertical(amount);
         } else {
-            session.addHorizontal((int) event.getAmount());
+            session.addHorizontal(amount);
         }
     }
 }

@@ -20,7 +20,6 @@ public record ScrollingStatusListener(GreatScrollableTooltips main) {
     @SubscribeEvent
     public void preRenderTooltip(RenderTooltipEvent.Pre event) {
         ScrollSession<ItemStack> session = this.main.getScrollSession();
-        session.setRendering(true);
         ItemStack itemStack = event.getSlot().getItem();
         if (itemStack != session.getLastItemStackRendered()) { // 如果正在渲染的物品和上一次渲染的物品不是同一个
             session.setLastItemStackRendered(itemStack);
@@ -34,7 +33,6 @@ public record ScrollingStatusListener(GreatScrollableTooltips main) {
     @SubscribeEvent
     public void missRenderTooltip(RenderTooltipEvent.Miss event) {
         ScrollSession<ItemStack> session = this.main.getScrollSession();
-        session.setRendering(false);
         session.setLastItemStackRendered(null);
         if (this.main.getConfig().autoReset) { // 仅当自动回正开启时自动回正
             session.resetScroll();
@@ -45,7 +43,6 @@ public record ScrollingStatusListener(GreatScrollableTooltips main) {
     public void onScreenClose(ScreenCloseEvent event) {
         ScrollSession<ItemStack> session = this.main.getScrollSession();
         session.setLastItemStackRendered(null);
-        session.setRendering(false);
         session.resetScroll();
     }
 }

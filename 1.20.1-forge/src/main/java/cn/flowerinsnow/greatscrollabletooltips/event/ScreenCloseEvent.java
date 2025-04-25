@@ -29,7 +29,7 @@ public class ScreenCloseEvent extends Event {
 
     @Override
     public String toString() {
-        return "ScreenCloseEvent{" +
+        return ScreenCloseEvent.class.getSimpleName() + "{" +
                 "oldScreen=" + this.oldScreen +
                 '}';
     }

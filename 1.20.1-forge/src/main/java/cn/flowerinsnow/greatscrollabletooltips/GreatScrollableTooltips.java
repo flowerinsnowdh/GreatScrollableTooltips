@@ -7,7 +7,6 @@ import net.minecraftforge.client.ConfigScreenHandler;
 import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -18,6 +17,8 @@ import cn.flowerinsnow.greatscrollabletooltips.manager.KeyBindingManager;
 import cn.flowerinsnow.greatscrollabletooltips.common.object.ScrollSession;
 import cn.flowerinsnow.greatscrollabletooltips.common.provider.ModEnvironmentProvider;
 import cn.flowerinsnow.greatscrollabletooltips.screen.ConfigScreen;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.InputStream;
 import java.nio.file.Path;
@@ -32,9 +33,13 @@ public class GreatScrollableTooltips {
 
     private ScrollSession<ItemStack> scrollSession;
 
-    public GreatScrollableTooltips() {
-        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+    private final FMLJavaModLoadingContext context;
+
+    public GreatScrollableTooltips(FMLJavaModLoadingContext context) {
+        this.context = context;
+        IEventBus modEventBus = context.getModEventBus();
         modEventBus.addListener(this::onClientSetup);
+        modEventBus.addListener(this::initKeyBindings);
     }
 
     public void onClientSetup(FMLClientSetupEvent event) {
@@ -65,7 +70,7 @@ public class GreatScrollableTooltips {
         this.config.saveDefaultConfig();
         this.config.load();
 
-        ModLoadingContext.get().registerExtensionPoint(ConfigScreenHandler.ConfigScreenFactory.class, () ->
+        this.context.registerExtensionPoint(ConfigScreenHandler.ConfigScreenFactory.class, () ->
                 new ConfigScreenHandler.ConfigScreenFactory((client, parent) -> new ConfigScreen(parent, GreatScrollableTooltips.this.config))
         );
     }
@@ -83,8 +88,6 @@ public class GreatScrollableTooltips {
 
         // 按键滚动时
         eventBus.register(new KeyScrollListener(this));
-
-        eventBus.addListener(this::initKeyBindings);
     }
 
     public void initKeyBindings(RegisterKeyMappingsEvent event) {

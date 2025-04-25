@@ -22,15 +22,15 @@ public class PreScreenMouseScrollEvent extends Event {
     }
 
     public AbstractContainerScreen<?> getScreen() {
-        return screen;
+        return this.screen;
     }
 
     public double getMouseX() {
-        return mouseX;
+        return this.mouseX;
     }
 
     public double getMouseY() {
-        return mouseY;
+        return this.mouseY;
     }
 
     public double getAmount() {
@@ -57,11 +57,11 @@ public class PreScreenMouseScrollEvent extends Event {
 
     @Override
     public String toString() {
-        return "PreScreenMouseScrollEvent{" +
-                "screen=" + screen +
-                ", mouseX=" + mouseX +
-                ", mouseY=" + mouseY +
-                ", amount=" + amount +
+        return PreScreenMouseScrollEvent.class.getSimpleName() + "{" +
+                "screen=" + this.screen +
+                ", mouseX=" + this.mouseX +
+                ", mouseY=" + this.mouseY +
+                ", amount=" + this.amount +
                 '}';
     }
 }

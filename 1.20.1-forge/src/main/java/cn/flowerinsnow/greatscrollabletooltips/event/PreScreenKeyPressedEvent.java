@@ -57,7 +57,7 @@ public class PreScreenKeyPressedEvent extends Event {
 
     @Override
     public String toString() {
-        return "PreScreenKeyPressedEvent{" +
+        return PreScreenKeyPressedEvent.class.getSimpleName() + "{" +
                 "screen=" + this.screen +
                 ", keyCode=" + this.keyCode +
                 ", scanCode=" + this.scanCode +
