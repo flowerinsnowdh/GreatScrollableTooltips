@@ -1,5 +1,7 @@
-package online.flowerinsnow.greatscrollabletooltips.mixinplugin;
+package cn.flowerinsnow.greatscrollabletooltips.mixinplugin;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.fabricmc.loader.api.FabricLoader;
 import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
@@ -8,6 +10,7 @@ import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
 import java.util.List;
 import java.util.Set;
 
+@Environment(EnvType.CLIENT)
 public class GreatScrollableTooltipsMixinPlugin implements IMixinConfigPlugin {
     @Override
     public void onLoad(String mixinPackage) {
@@ -20,7 +23,10 @@ public class GreatScrollableTooltipsMixinPlugin implements IMixinConfigPlugin {
 
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
-        if ("online.flowerinsnow.greatscrollabletooltips.mixin.legendarytooltips.MixinLegendaryTooltips".equals(mixinClassName) || "online.flowerinsnow.greatscrollabletooltips.mixin.legendarytooltips.MixinItemModelComponent".equals(mixinClassName)) {
+        if (
+                "cn.flowerinsnow.greatscrollabletooltips.mixin.legendarytooltips.MixinLegendaryTooltips".equals(mixinClassName) ||
+                        "cn.flowerinsnow.greatscrollabletooltips.mixin.legendarytooltips.MixinItemModelComponent".equals(mixinClassName)
+        ) {
             return FabricLoader.getInstance().isModLoaded("legendarytooltips");
         }
         return true;

@@ -13,7 +13,7 @@ jobs:
       contents: write
     defaults:
       run:
-        working-directory: 1.20.1-forge/
+        working-directory: 1.20.2-24w13a-fabric/
 
     steps:
       - uses: actions/checkout@v4
@@ -39,4 +39,4 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
-          files: 1.20.1-forge/build/libs/*
+          files: 1.20.2-24w13a-fabric/build/libs/*

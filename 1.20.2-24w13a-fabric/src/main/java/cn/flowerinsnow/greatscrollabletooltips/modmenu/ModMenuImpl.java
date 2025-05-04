@@ -1,11 +1,11 @@
-package online.flowerinsnow.greatscrollabletooltips.modmenu;
+package cn.flowerinsnow.greatscrollabletooltips.modmenu;
 
 import com.terraformersmc.modmenu.api.ConfigScreenFactory;
 import com.terraformersmc.modmenu.api.ModMenuApi;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import online.flowerinsnow.greatscrollabletooltips.GreatScrollableTooltips;
-import online.flowerinsnow.greatscrollabletooltips.screen.ConfigScreen;
+import cn.flowerinsnow.greatscrollabletooltips.GreatScrollableTooltips;
+import cn.flowerinsnow.greatscrollabletooltips.screen.ConfigScreen;
 
 @Environment(EnvType.CLIENT)
 public class ModMenuImpl implements ModMenuApi {

@@ -1,15 +1,15 @@
 {
     "required": true,
-    "package": "online.flowerinsnow.greatscrollabletooltips.mixin",
+    "package": "cn.flowerinsnow.greatscrollabletooltips.mixin",
     "compatibilityLevel": "JAVA_17",
     "client": [
-        "MixinDrawContext",
-        "MixinHandledScreen",
-        "legendarytooltips.MixinItemModelComponent",
-        "legendarytooltips.MixinLegendaryTooltips"
+      "MixinDrawContext",
+      "MixinHandledScreen",
+      "legendarytooltips.MixinItemModelComponent",
+      "legendarytooltips.MixinLegendaryTooltips"
     ],
     "injectors": {
         "defaultRequire": 1
 	},
-    "plugin": "online.flowerinsnow.greatscrollabletooltips.mixinplugin.GreatScrollableTooltipsMixinPlugin"
+    "plugin": "cn.flowerinsnow.greatscrollabletooltips.mixinplugin.GreatScrollableTooltipsMixinPlugin"
 }
