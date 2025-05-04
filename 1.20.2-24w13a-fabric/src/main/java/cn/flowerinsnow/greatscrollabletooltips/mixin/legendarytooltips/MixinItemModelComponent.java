@@ -24,7 +24,7 @@ public class MixinItemModelComponent {
     )
     public int modifyX(int x) {
         GreatScrollableTooltips main = GreatScrollableTooltips.getInstance();
-        return x + (main.getScrollSession().getVertical() + main.getConfig().sensitivity);
+        return x + (main.getScrollSession().getVertical() * main.getConfig().sensitivity);
     }
 
     @ModifyVariable(
@@ -39,6 +39,6 @@ public class MixinItemModelComponent {
     )
     public int modifyY(int y) {
         GreatScrollableTooltips main = GreatScrollableTooltips.getInstance();
-        return y + (main.getScrollSession().getHorizontal() + main.getConfig().sensitivity);
+        return y + (main.getScrollSession().getHorizontal() * main.getConfig().sensitivity);
     }
 }

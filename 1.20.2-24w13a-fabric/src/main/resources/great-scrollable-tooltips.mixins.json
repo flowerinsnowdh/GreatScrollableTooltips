@@ -5,7 +5,6 @@
     "client": [
       "MixinDrawContext",
       "MixinHandledScreen",
-      "legendarytooltips.MixinItemModelComponent",
       "legendarytooltips.MixinLegendaryTooltips"
     ],
     "injectors": {

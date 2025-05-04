@@ -19,7 +19,7 @@ public class MixinLegendaryTooltips {
     )
     private static int modifyX(int x) {
         GreatScrollableTooltips main = GreatScrollableTooltips.getInstance();
-        return x + (main.getScrollSession().getVertical() + main.getConfig().sensitivity);
+        return x + (main.getScrollSession().getVertical() * main.getConfig().sensitivity);
     }
 
     @ModifyVariable(
@@ -30,6 +30,6 @@ public class MixinLegendaryTooltips {
     )
     private static int modifyY(int y) {
         GreatScrollableTooltips main = GreatScrollableTooltips.getInstance();
-        return y + (main.getScrollSession().getVertical() + main.getConfig().sensitivity);
+        return y + (main.getScrollSession().getHorizontal() * main.getConfig().sensitivity);
     }
 }
