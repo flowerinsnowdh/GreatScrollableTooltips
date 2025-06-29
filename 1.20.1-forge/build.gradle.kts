@@ -128,7 +128,11 @@ dependencies {
     // https://www.curseforge.com/minecraft/mc-mods/obscure-tooltips/files/4686579
     compileOnly(fg.deobf("curse.maven:obscure-tooltips-715660:4686579"))
 
-    implementation("cn.flowerinsnow.greatscrollabletooltips:common:[${project.property("version_common_module")}]")
+    // Tooltips Reforged 1.2-1.20.1-forge
+    // https://www.curseforge.com/minecraft/mc-mods/tooltips-reforged/files/6706915
+    compileOnly(fg.deobf("curse.maven:tooltips-reforged-1277444:6706915"))
+
+    implementation("cn.flowerinsnow.greatscrollabletooltips:common:${project.property("version_common_module")}")
     jarJar("cn.flowerinsnow.greatscrollabletooltips:common:[${project.property("version_common_module")}]")
 
     annotationProcessor("org.spongepowered:mixin:0.8.5:processor")
