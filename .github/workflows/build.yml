@@ -1,7 +1,9 @@
-name: "Release"
+name: "Build"
 
 on:
   push:
+    branches:
+      - "*"
     tags:
       - "*"
 
@@ -11,12 +13,15 @@ jobs:
     runs-on: "ubuntu-latest"
     permissions:
       contents: write
+      packages: read
     defaults:
       run:
-        working-directory: 1.20.2-24w13a-fabric/
+        working-directory: 1.20.1-forge/
 
     steps:
       - uses: actions/checkout@v4
+
+      - uses: gradle/actions/wrapper-validation@v4
 
       - name: Set up JDK
         uses: actions/setup-java@v4
@@ -24,19 +29,17 @@ jobs:
           java-version: 17
           distribution: temurin
 
-      - name: Grant execute permission to gradlew
-        run: chmod +x gradlew
-
       - name: Build
         run: ./gradlew build
         env:
-          GITHUB_USERNAME: ${{ github.repository_owner }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Checksum
         run: sha256sum build/libs/*
+        if: github.ref_type == 'tag'
 
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
-          files: 1.20.2-24w13a-fabric/build/libs/*
+          files: 1.20.1-forge/build/libs/*
+        if: github.ref_type == 'tag'

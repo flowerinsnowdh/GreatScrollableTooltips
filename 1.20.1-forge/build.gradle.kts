@@ -79,12 +79,18 @@ repositories {
     // flatDir {
     //     dir 'libs'
     // }
+    if (System.getenv("USE_MIRROR_REPO") == "true") {
+        maven("https://repo.nju.edu.cn/maven/")
+    } else {
+        gradlePluginPortal()
+    }
+
     maven(url = "https://repo.spongepowered.org/repository/maven-public/")
 
     maven {
         url = uri("https://maven.pkg.github.com/flowerinsnowdh/GreatScrollableTooltips")
         credentials {
-            username = System.getenv("GITHUB_USERNAME")
+            username = "x-access-token"
             password = System.getenv("GITHUB_TOKEN")
         }
     }

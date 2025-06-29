@@ -1,6 +1,10 @@
 pluginManagement {
     repositories {
-        gradlePluginPortal()
+        if (System.getenv("USE_MIRROR_REPO") == "true") {
+            maven("https://repo.nju.edu.cn/maven/")
+        } else {
+            gradlePluginPortal()
+        }
         maven(url = "https://maven.minecraftforge.net/")
         maven(url = "https://repo.spongepowered.org/repository/maven-public/")
     }
