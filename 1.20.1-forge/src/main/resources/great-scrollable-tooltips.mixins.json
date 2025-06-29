@@ -8,7 +8,8 @@
         "MixinHandledScreen",
         "MixinDrawContext",
         "legendarytooltips.MixinLegendaryTooltips",
-        "obscuretooltips.MixinTooltipRenderer"
+        "obscuretooltips.MixinTooltipRenderer",
+        "tooltipsreforged.MixinTooltipsRenderHelper"
     ],
     "injectors": {
         "defaultRequire": 1

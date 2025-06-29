@@ -28,6 +28,10 @@ public class GreatScrollableTooltipsMixinPlugin implements IMixinConfigPlugin {
         if ("cn.flowerinsnow.greatscrollabletooltips.mixin.obscuretooltips.MixinTooltipRenderer".equals(mixinClassName)) {
             return FMLLoader.getLoadingModList().getModFileById("obscure_tooltips") != null;
         }
+        // Tooltips Reforged
+        if ("cn.flowerinsnow.greatscrollabletooltips.mixin.tooltipsreforged.MixinTooltipsRenderHelper".equals(mixinClassName)) {
+            return FMLLoader.getLoadingModList().getModFileById("tooltips_reforged") != null;
+        }
         return true;
     }
 
