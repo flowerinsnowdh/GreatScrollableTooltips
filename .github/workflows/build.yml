@@ -3,9 +3,9 @@ name: "Build"
 on:
   push:
     branches:
-      - "*"
+      - "**"
     tags:
-      - "*"
+      - "**"
 
 jobs:
   release:
@@ -16,7 +16,7 @@ jobs:
       packages: read
     defaults:
       run:
-        working-directory: 1.20.1-forge/
+        working-directory: 1.21.5-1.21.8-fabric/
 
     steps:
       - uses: actions/checkout@v4
@@ -26,20 +26,19 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v4
         with:
-          java-version: 17
+          java-version: 21
           distribution: temurin
+      
+      - name: Grant execute permission to gradlew
+        run: chmod +x gradlew
 
       - name: Build
         run: ./gradlew build
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Checksum
-        run: sha256sum build/libs/*
-        if: github.ref_type == 'tag'
-
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
-          files: 1.20.1-forge/build/libs/*
+          files: 1.21.5-1.21.8-fabric/build/libs/*
         if: github.ref_type == 'tag'

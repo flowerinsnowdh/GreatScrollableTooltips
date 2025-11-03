@@ -79,7 +79,7 @@ repositories {
     // flatDir {
     //     dir 'libs'
     // }
-    if (System.getenv("USE_MIRROR_REPO") == "true") {
+    if (System.getenv("GRADLE_USE_MIRROR") == "true") {
         maven("https://repo.nju.edu.cn/maven/")
     } else {
         gradlePluginPortal()
@@ -91,11 +91,11 @@ repositories {
         url = uri("https://maven.pkg.github.com/flowerinsnowdh/GreatScrollableTooltips")
         credentials {
             username = "x-access-token"
-            password = System.getenv("GITHUB_TOKEN")
+            password = System.getenv("GITHUB_PKG_R_TOKEN")
         }
     }
 
-    maven(url = "https://www.cursemaven.com")
+    maven("https://www.cursemaven.com")
 }
 
 dependencies {

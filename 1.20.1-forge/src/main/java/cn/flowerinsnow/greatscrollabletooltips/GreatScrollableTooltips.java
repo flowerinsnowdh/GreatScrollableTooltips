@@ -1,13 +1,12 @@
 package cn.flowerinsnow.greatscrollabletooltips;
 
+import cn.flowerinsnow.greatscrollabletooltips.util.ConfigScreenUtil;
 import net.minecraft.CrashReport;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.client.ConfigScreenHandler;
 import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -17,10 +16,10 @@ import cn.flowerinsnow.greatscrollabletooltips.listener.*;
 import cn.flowerinsnow.greatscrollabletooltips.manager.KeyBindingManager;
 import cn.flowerinsnow.greatscrollabletooltips.common.object.ScrollSession;
 import cn.flowerinsnow.greatscrollabletooltips.common.provider.ModEnvironmentProvider;
-import cn.flowerinsnow.greatscrollabletooltips.screen.ConfigScreen;
 
 import java.io.InputStream;
 import java.nio.file.Path;
+import java.util.function.Consumer;
 
 @Mod(GreatScrollableTooltips.MODID)
 public class GreatScrollableTooltips {
@@ -39,19 +38,19 @@ public class GreatScrollableTooltips {
 
     public GreatScrollableTooltips(FMLJavaModLoadingContext context) {
         IEventBus modEventBus = context.getModEventBus();
-        modEventBus.addListener(this::onClientSetup);
-        modEventBus.addListener(this::initKeyBindings);
+        modEventBus.addListener((Consumer<FMLClientSetupEvent>) event -> GreatScrollableTooltips.this.onClientSetup(context));
     }
 
-    public void onClientSetup(FMLClientSetupEvent event) {
+    public void onClientSetup(FMLJavaModLoadingContext context) {
         GreatScrollableTooltips.instance = this;
         this.scrollSession = new ScrollSession<>();
 
-        this.initConfig();
+        this.initConfig(context);
         this.initListeners();
+        context.getModEventBus().addListener(this::initKeyBindings);
     }
 
-    private void initConfig() {
+    private void initConfig(FMLJavaModLoadingContext context) {
         this.config = new GreatScrollableTooltipsConfig(new ModEnvironmentProvider() {
             @Override
             public InputStream getDefaultConfigAsStream() {
@@ -70,11 +69,7 @@ public class GreatScrollableTooltips {
         });
         this.config.saveDefaultConfig();
         this.config.load();
-
-        //noinspection removal : for old forge versions
-        ModLoadingContext.get().registerExtensionPoint(ConfigScreenHandler.ConfigScreenFactory.class, () ->
-                new ConfigScreenHandler.ConfigScreenFactory((client, parent) -> new ConfigScreen(parent, GreatScrollableTooltips.this.config))
-        );
+        ConfigScreenUtil.registerConfigScreen(context, this.config);
     }
 
     private void initListeners() {

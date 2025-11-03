@@ -1,0 +1,45 @@
+{
+    "schemaVersion": 1,
+    "id": "great-scrollable-tooltips",
+    "version": "${version}",
+    "name": "Great Scrollable Tooltips",
+    "description": "Allow scrolling of item tooltips in the inventory.",
+    "authors": [
+        "flowerinsnow"
+    ],
+    "contact": {
+        "homepage": "https://modrinth.com/project/great-scrollable-tooltips",
+        "sources": "https://github.com/flowerinsnowdh/GreatScrollableTooltips",
+        "issues": "https://github.com/flowerinsnowdh/GreatScrollableTooltips/issues"
+    },
+    "license": "MPL-2.0",
+    "icon": "assets/great-scrollable-tooltips/icon.png",
+    "environment": "client",
+    "entrypoints": {
+        "client": [
+            "cn.flowerinsnow.greatscrollabletooltips.GreatScrollableTooltips"
+        ],
+        "modmenu": [
+            "cn.flowerinsnow.greatscrollabletooltips.modmenu.ModMenuImpl"
+        ]
+    },
+    "mixins": [
+        "great-scrollable-tooltips.mixins.json"
+    ],
+    "depends": {
+        "fabricloader": ">=0.16.10",
+        "minecraft": ">=1.21.5 <=1.21.8",
+        "java": ">=21",
+        "fabric-api": ">=0.119.5"
+    },
+    "suggests": {
+        "modmenu": ">=14.0.0-rc.1"
+    },
+    "custom": {
+        "modmenu": {
+            "links": {
+                "modmenu.github_releases": "https://github.com/flowerinsnowdh/GreatScrollableTooltips/releases"
+            }
+        }
+    }
+}
