@@ -1,5 +1,5 @@
 plugins {
-    id("fabric-loom") version "1.12.7"
+    id("net.fabricmc.fabric-loom-remap") version "1.15.0-alpha.6"
 }
 
 group = "${project.property("maven_group")}"
@@ -10,28 +10,33 @@ base {
 }
 
 repositories {
-    maven("https://maven.pkg.github.com/flowerinsnowdh/GreatScrollableTooltips") {
-        credentials {
-            username = "x-access-token"
-            password = "${System.getenv("GITHUB_TOKEN")}"
+    maven("https://maven.terraformersmc.com/releases/") {
+        content {
+            includeModule("com.terraformersmc", "modmenu")
         }
     }
 
-    maven("https://maven.terraformersmc.com/releases/")
+    System.getenv("GRADLE_CENTRAL_MIRROR")?.let {
+        maven(it)
+    }
+    mavenCentral()
 }
 
 dependencies {
     minecraft("com.mojang:minecraft:${project.property("minecraft_version")}")
-    mappings("net.fabricmc:yarn:${project.property("yarn_mappings")}:v2")
+    mappings(loom.officialMojangMappings())
     modImplementation("net.fabricmc:fabric-loader:${project.property("loader_version")}")
 
     modImplementation("net.fabricmc.fabric-api:fabric-api:${project.property("fabric_version")}")
 
     modImplementation("com.terraformersmc:modmenu:${project.property("modmenu_version")}")
 
-    include(implementation("cn.flowerinsnow.greatscrollabletooltips:common:${project.property("common_module_version")}") as Dependency)
-    include(implementation("com.electronwill.night-config:core:${project.property("night_config_version")}") as Dependency)
-    include(implementation("com.electronwill.night-config:toml:${project.property("night_config_version")}") as Dependency)
+    include(implementation("tools.jackson.core:jackson-core:${project.property("jackson_version")}") as Dependency)
+    include(implementation("com.fasterxml.jackson.core:jackson-annotations:2.20") as Dependency)
+    include(implementation("tools.jackson.core:jackson-databind:${project.property("jackson_version")}") as Dependency)
+    include(implementation("tools.jackson.dataformat:jackson-dataformat-toml:${project.property("jackson_version")}") as Dependency)
+
+    compileOnly("org.jetbrains:annotations:${project.property("jetbrains_annotations_version")}")
 }
 
 tasks.processResources {
