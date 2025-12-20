@@ -21,7 +21,7 @@ import java.nio.file.Path;
 public class GreatScrollableTooltipsConfig {
     private ObjectNode root;
 
-    private static JsonMapper JSON_MAPPER = JsonMapper.builder()
+    private static final JsonMapper JSON_MAPPER = JsonMapper.builder()
             .enable(JsonReadFeature.ALLOW_JAVA_COMMENTS, JsonReadFeature.ALLOW_BACKSLASH_ESCAPING_ANY_CHARACTER, JsonReadFeature.ALLOW_SINGLE_QUOTES,
                     JsonReadFeature.ALLOW_UNQUOTED_PROPERTY_NAMES
             ).enable(SerializationFeature.INDENT_OUTPUT)
