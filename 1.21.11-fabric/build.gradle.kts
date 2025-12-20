@@ -34,7 +34,6 @@ dependencies {
     include(implementation("tools.jackson.core:jackson-core:${project.property("jackson_version")}") as Dependency)
     include(implementation("com.fasterxml.jackson.core:jackson-annotations:2.20") as Dependency)
     include(implementation("tools.jackson.core:jackson-databind:${project.property("jackson_version")}") as Dependency)
-    include(implementation("tools.jackson.dataformat:jackson-dataformat-toml:${project.property("jackson_version")}") as Dependency)
 
     compileOnly("org.jetbrains:annotations:${project.property("jetbrains_annotations_version")}")
 }
