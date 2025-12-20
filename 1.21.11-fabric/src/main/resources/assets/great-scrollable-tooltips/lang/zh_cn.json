@@ -1,0 +1,17 @@
+{
+    "key.category.great-scrollable-tooltips.name": "Great Scrollable Tooltips",
+    "great-scrollable-tooltips.ui.title": "Great Scrollable Tooltips",
+    "great-scrollable-tooltips.ui.title.constant.true": "true",
+    "great-scrollable-tooltips.ui.title.constant.false": "false",
+    "great-scrollable-tooltips.ui.config.enable": "启用：%s",
+    "great-scrollable-tooltips.ui.config.auto-reset": "自动回正: %s",
+    "great-scrollable-tooltips.ui.config.auto-reset.tooltip": "当光标从物品上移开时回正滚动",
+    "great-scrollable-tooltips.ui.config.sensitivity": "灵敏度：%s",
+    "great-scrollable-tooltips.ui.config.invert-scrolling.mouse.x": "反转鼠标X轴: %s",
+    "great-scrollable-tooltips.ui.config.invert-scrolling.mouse.y": "反转鼠标Y轴: %s",
+    "great-scrollable-tooltips.ui.config.done": "完成",
+    "great-scrollable-tooltips.key-binding.scroll-up": "向上滚动",
+    "great-scrollable-tooltips.key-binding.scroll-left": "向左滚动",
+    "great-scrollable-tooltips.key-binding.scroll-down": "向下滚动",
+    "great-scrollable-tooltips.key-binding.scroll-right": "向右滚动"
+}
