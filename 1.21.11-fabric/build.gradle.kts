@@ -1,5 +1,5 @@
 plugins {
-    id("net.fabricmc.fabric-loom-remap") version "1.14-SNAPSHOT"
+    alias(libs.plugins.fabric.loom.remap)
 }
 
 group = "${project.property("maven_group")}"
@@ -16,6 +16,17 @@ repositories {
         }
     }
 
+    maven("https://maven.pkg.github.com/flowerinsnowdh/FlowerinsnowLib") {
+        content {
+            includeGroup("cn.flowerinsnow.flowerinsnowlib")
+        }
+
+        credentials {
+            username = "x-access-token"
+            password = "${System.getenv("GITHUB_PKG_R_TOKEN")}"
+        }
+    }
+
     System.getenv("GRADLE_CENTRAL_MIRROR")?.let {
         maven(it)
     }
@@ -23,22 +34,29 @@ repositories {
 }
 
 dependencies {
-    minecraft("com.mojang:minecraft:${project.property("minecraft_version")}")
+    minecraft(libs.minecraft)
     mappings(loom.officialMojangMappings())
-    modImplementation("net.fabricmc:fabric-loader:${project.property("loader_version")}")
+    modImplementation(libs.fabric.loader)
 
-    modImplementation("net.fabricmc.fabric-api:fabric-api:${project.property("fabric_version")}")
+    modImplementation(libs.fabric.api)
 
-    modImplementation("com.terraformersmc:modmenu:${project.property("modmenu_version")}")
+    modImplementation(libs.modmenu)
 
-    include(implementation("tools.jackson.core:jackson-core:${project.property("jackson_version")}") as Dependency)
-    include(implementation("com.fasterxml.jackson.core:jackson-annotations:2.20") as Dependency)
-    include(implementation("tools.jackson.core:jackson-databind:${project.property("jackson_version")}") as Dependency)
+    include(platform(libs.jackson.bom))
+    include(libs.jackson.annotations)
+    include(libs.jackson.core)
+    include(libs.jackson.databind)
 
-    compileOnly("org.jetbrains:annotations:${project.property("jetbrains_annotations_version")}")
+    implementation(platform(libs.flowerinsnowlib.bom))
+    include(platform(libs.flowerinsnowlib.bom))
+    implementation(libs.flowerinsnowlib.jackson.databind.java11)
+    include(libs.flowerinsnowlib.jackson.databind.core)
+    include(libs.flowerinsnowlib.jackson.databind.java11)
+
+    compileOnly(libs.jetbrains.annotations)
 }
 
-tasks.processResources {
+tasks.named<ProcessResources>("processResources").configure {
     val replaceProperties = mapOf(
         "version" to "${project.version}"
     )
@@ -51,10 +69,15 @@ tasks.processResources {
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
+        languageVersion = JavaLanguageVersion.of(25)
     }
 }
 
-tasks.jar {
+tasks.withType<JavaCompile>().configureEach {
+    options.encoding = "UTF-8"
+    options.release = 21
+}
+
+tasks.named<Jar>("jar").configure {
     from("../LICENSE")
 }

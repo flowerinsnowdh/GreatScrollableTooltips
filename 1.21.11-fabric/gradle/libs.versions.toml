@@ -1,0 +1,26 @@
+[versions]
+fabric-loom-remap = '1.15.0-alpha.29'
+minecraft = '1.21.11'
+fabric-loader = '0.18.3'
+fabric-api = '0.141.1+1.21.11'
+modmenu = '17.0.0-beta.2'
+jackson-bom = '3.0.3'
+jetbrains-annotations = '26.0.2-1'
+flowerinsnowlib-bom = '1.4.0'
+
+[libraries]
+minecraft = { module = 'com.mojang:minecraft', version.ref = 'minecraft' }
+fabric-loader = { module = 'net.fabricmc:fabric-loader', version.ref = 'fabric-loader' }
+fabric-api = { module = 'net.fabricmc.fabric-api:fabric-api', version.ref = 'fabric-api' }
+modmenu = { module = 'com.terraformersmc:modmenu', version.ref = 'modmenu' }
+jackson-bom = { module = 'tools.jackson:jackson-bom', version.ref = 'jackson-bom' }
+jackson-annotations = { module = "com.fasterxml.jackson.core:jackson-annotations" }
+jackson-core = { module = 'tools.jackson.core:jackson-core' }
+jackson-databind = { module = 'tools.jackson.core:jackson-databind' }
+jetbrains-annotations = { module = 'org.jetbrains:annotations', version.ref = 'jetbrains-annotations' }
+flowerinsnowlib-bom = { module = 'cn.flowerinsnow.flowerinsnowlib:bom', version.ref = 'flowerinsnowlib-bom' }
+flowerinsnowlib-jackson-databind-core = { module = 'cn.flowerinsnow.flowerinsnowlib:jackson-databind-core' }
+flowerinsnowlib-jackson-databind-java11 = { module = 'cn.flowerinsnow.flowerinsnowlib:jackson-databind-java11' }
+
+[plugins]
+fabric-loom-remap = { id = 'net.fabricmc.fabric-loom-remap', version.ref = 'fabric-loom-remap' }

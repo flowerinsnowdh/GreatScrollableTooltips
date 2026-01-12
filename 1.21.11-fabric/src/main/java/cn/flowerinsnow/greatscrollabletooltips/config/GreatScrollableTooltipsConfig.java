@@ -1,5 +1,7 @@
 package cn.flowerinsnow.greatscrollabletooltips.config;
 
+import cn.flowerinsnow.flowerinsnowlib.jackson.databind.java11.prettyprinter.CustomIndentDefaultPrettyPrinterImpl;
+import cn.flowerinsnow.flowerinsnowlib.jackson.databind.json5.Json5Mapper;
 import cn.flowerinsnow.greatscrollabletooltips.GreatScrollableTooltips;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -7,9 +9,6 @@ import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.CrashReport;
 import net.minecraft.client.Minecraft;
 import org.jetbrains.annotations.Contract;
-import tools.jackson.core.json.JsonReadFeature;
-import tools.jackson.core.json.JsonWriteFeature;
-import tools.jackson.databind.SerializationFeature;
 import tools.jackson.databind.json.JsonMapper;
 import tools.jackson.databind.node.ObjectNode;
 
@@ -21,12 +20,7 @@ import java.nio.file.Path;
 public class GreatScrollableTooltipsConfig {
     private ObjectNode root;
 
-    private static final JsonMapper JSON_MAPPER = JsonMapper.builder()
-            .enable(JsonReadFeature.ALLOW_JAVA_COMMENTS, JsonReadFeature.ALLOW_BACKSLASH_ESCAPING_ANY_CHARACTER, JsonReadFeature.ALLOW_SINGLE_QUOTES,
-                    JsonReadFeature.ALLOW_UNQUOTED_PROPERTY_NAMES
-            ).enable(SerializationFeature.INDENT_OUTPUT)
-            .disable(JsonWriteFeature.QUOTE_PROPERTY_NAMES)
-            .build();
+    private static final JsonMapper JSON_MAPPER = Json5Mapper.shared();
 
     private static final String FIELD_VERSION = "version";
     private static final int VERSION = 1;
@@ -79,7 +73,7 @@ public class GreatScrollableTooltipsConfig {
 
     @Contract(mutates = "io")
     public void save() {
-        JSON_MAPPER.writeValue(getConfigPath(), this.root);
+        JSON_MAPPER.writer().with(CustomIndentDefaultPrettyPrinterImpl.instance().createSpacesLF(4)).writeValue(getConfigPath(), this.root);
     }
 
     @Contract(pure = true)
