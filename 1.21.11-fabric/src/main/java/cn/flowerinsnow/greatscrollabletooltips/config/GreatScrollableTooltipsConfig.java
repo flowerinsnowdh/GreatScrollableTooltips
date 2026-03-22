@@ -1,6 +1,6 @@
 package cn.flowerinsnow.greatscrollabletooltips.config;
 
-import cn.flowerinsnow.flowerinsnowlib.jackson.databind.java11.prettyprinter.CustomIndentDefaultPrettyPrinterImpl;
+import cn.flowerinsnow.flowerinsnowlib.jackson.databind.java11.prettyprinter.CustomIndentDefaultPrettyPrinterFactoryImpl;
 import cn.flowerinsnow.flowerinsnowlib.jackson.databind.json5.Json5Mapper;
 import cn.flowerinsnow.greatscrollabletooltips.GreatScrollableTooltips;
 import net.fabricmc.api.EnvType;
@@ -73,7 +73,7 @@ public class GreatScrollableTooltipsConfig {
 
     @Contract(mutates = "io")
     public void save() {
-        JSON_MAPPER.writer().with(CustomIndentDefaultPrettyPrinterImpl.instance().createSpacesLF(4)).writeValue(getConfigPath(), this.root);
+        JSON_MAPPER.writer().with(CustomIndentDefaultPrettyPrinterFactoryImpl.instance().createSpacesLF(4)).writeValue(getConfigPath(), this.root);
     }
 
     @Contract(pure = true)
