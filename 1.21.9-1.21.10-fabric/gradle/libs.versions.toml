@@ -1,12 +1,12 @@
 [versions]
-fabric-loom-remap = '1.15.5'
+fabric-loom-remap = '1.15.3'
 minecraft = '1.21.11'
-fabric-loader = '0.18.4'
-fabric-api = '0.141.3+1.21.11'
+fabric-loader = '0.18.3'
+fabric-api = '0.141.1+1.21.11'
 modmenu = '17.0.0-beta.2'
-jackson-bom = '3.1.0'
-jetbrains-annotations = '26.1.0'
-flowerinsnowlib-bom = '1.6.0'
+jackson-bom = '3.0.3'
+jetbrains-annotations = '26.0.2-1'
+flowerinsnowlib-bom = '1.4.0'
 
 [libraries]
 minecraft = { module = 'com.mojang:minecraft', version.ref = 'minecraft' }

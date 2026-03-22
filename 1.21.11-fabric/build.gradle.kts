@@ -23,7 +23,7 @@ repositories {
 
         credentials {
             username = "x-access-token"
-            password = "${System.getenv("GITHUB_PKG_R_TOKEN")}"
+            password = "${System.getenv("GITHUB_PUBLIC_READONLY_TOKEN")}"
         }
     }
 

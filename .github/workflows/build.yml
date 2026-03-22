@@ -33,7 +33,7 @@ jobs:
       - run: |
           ./gradlew build
         env:
-          GITHUB_PKG_R_TOKEN: ${{ secrets.PKG_R_TOKEN }}
+          GITHUB_PUBLIC_READONLY_TOKEN: ${{ secrets.PUBLIC_READONLY_TOKEN }}
 
       - name: 'Upload release'
         uses: 'softprops/action-gh-release@v2'
